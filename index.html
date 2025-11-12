@@ -3,67 +3,127 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Up North Volleyball</title>
+  <title>Up North Volleyball | Seattle</title>
   <style>
-    /* ---------- General Styles ---------- */
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
-      background: linear-gradient(to bottom, #004e92, #000428);
+      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1600');
+      background-size: cover;
+      background-position: center;
       color: white;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     header {
-      background-color: rgba(0, 0, 0, 0.4);
-      padding: 20px 0;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.7);
+      padding: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
     }
 
     h1 {
+      font-size: 2rem;
       margin: 0;
-      font-size: 2.5em;
-      letter-spacing: 1px;
-    }
-
-    /* ---------- Navigation ---------- */
-    nav {
-      margin-top: 15px;
     }
 
     nav button {
-      background-color: #ffb347;
+      background: rgba(255, 255, 255, 0.8);
       border: none;
-      color: #000;
-      padding: 12px 25px;
-      margin: 8px;
-      border-radius: 6px;
-      font-size: 1em;
+      color: black;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      margin: 0.3rem;
+      border-radius: 0.5rem;
       cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
+      transition: background 0.3s;
     }
 
+    nav button.active,
     nav button:hover {
-      background-color: #ffd580;
-      transform: translateY(-2px);
+      background: #facc15;
     }
 
-    /* ---------- Content Sections ---------- */
-    section {
-      padding: 40px 20px;
+    main {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.5s ease;
+    }
+
+    .content {
       max-width: 800px;
-      margin: auto;
+      margin: 0 auto;
     }
 
-    .hidden {
-      display: none;
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      color: black;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      max-width: 400px;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      border: none;
+      font-size: 1rem;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    button.submit-btn {
+      background: #facc15;
+      border: none;
+      color: black;
+      font-weight: bold;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button.submit-btn:hover {
+      background: #ffe45e;
     }
 
     footer {
-      margin-top: 40px;
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.1);
-      font-size: 0.9em;
+      background: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    label {
+      align-self: flex-start;
+      margin-left: calc(50% - 200px);
+      font-weight: bold;
     }
   </style>
 </head>
@@ -71,50 +131,120 @@
   <header>
     <h1>Up North Volleyball</h1>
     <nav>
-      <button onclick="showSection('schedule')">League Schedule</button>
-      <button onclick="showSection('about')">About Me</button>
-      <button onclick="showSection('pricing')">Pricing</button>
-      <button onclick="showSection('locations')">Current Locations</button>
+      <button class="active" onclick="showPage('home')">Home</button>
+      <button onclick="showPage('about')">About</button>
+      <button onclick="showPage('locations')">Locations</button>
+      <button onclick="showPage('pricing')">Pricing</button>
+      <button onclick="showPage('leagues')">Leagues</button>
+      <button onclick="showPage('contact')">Contact</button>
     </nav>
   </header>
 
-  <main>
-    <section id="schedule">
-      <h2>League Schedule</h2>
-      <p>Coming soon! Stay tuned for our next league lineup and match times.</p>
-    </section>
+  <main id="content">
+    <div id="home" class="content page">
+      <h2>Welcome to Up North Volleyball!</h2>
+      <p>Seattle’s local hub for competitive and community volleyball leagues.</p>
+    </div>
 
-    <section id="about" class="hidden">
-      <h2>About Me</h2>
+    <div id="about" class="content page" style="display:none;">
+      <h2>About Us</h2>
       <p>
-        Welcome to Up North Volleyball! We’re a community-driven organization that brings together players of all skill levels to enjoy fun, competitive volleyball across the region.
+        Up North Volleyball was founded by <strong>Dane Erosa</strong>, a passionate local player from Seattle.
+        With years of experience in both indoor and beach volleyball, Dane built Up North Volleyball to bring
+        competitive, fun, and community-driven leagues to players across the city.
       </p>
-    </section>
+    </div>
 
-    <section id="pricing" class="hidden">
-      <h2>Pricing</h2>
-      <p>Team registration: $250 per season<br />Individual sign-up: $40 per player</p>
-    </section>
-
-    <section id="locations" class="hidden">
+    <div id="locations" class="content page" style="display:none;">
       <h2>Current Locations</h2>
-      <p>We currently host games in Traverse City, Petoskey, and Gaylord, Michigan.</p>
-    </section>
+      <div class="cards">
+        <div class="card">
+          <h3>Billings Middle School</h3>
+          <p>Seattle, WA</p>
+        </div>
+        <div class="card">
+          <h3>Downtown Seattle YMCA</h3>
+          <p>Seattle, WA</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="pricing" class="content page" style="display:none;">
+      <h2>Pricing</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Downtown Seattle YMCA</h3>
+          <p><strong>$400 per team</strong></p>
+        </div>
+        <div class="card">
+          <h3>Billings Middle School</h3>
+          <p><strong>$500 per team</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div id="leagues" class="content page" style="display:none;">
+      <h2>Current Ongoing Leagues</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Billings Middle School</h3>
+          <ul style="text-align:left;">
+            <li>🏐 Mondays: Nov 4 – Dec 16</li>
+            <li>🏐 Wednesdays: Nov 6 – Dec 18</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Downtown Seattle YMCA</h3>
+          <ul style="text-align:left;">
+            <li>🏐 Tuesdays: Nov 5 – Dec 17</li>
+            <li>🏐 Thursdays: Nov 7 – Dec 19</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="contact" class="content page" style="display:none;">
+      <h2>Contact Us</h2>
+      <p>
+        Have questions or want to sign up your team?<br />
+        Email us directly at
+        <a href="mailto:Upnorthvolleyballwa@gmail.com" style="color:#facc15;">Upnorthvolleyballwa@gmail.com</a>
+        or use the form below.
+      </p>
+
+      <form action="https://formsubmit.co/Upnorthvolleyballwa@gmail.com" method="POST">
+        <!-- Required FormSubmit settings -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="New Message from Up North Volleyball Website">
+        <input type="hidden" name="_template" value="table">
+
+        <label for="name">Your Name:</label>
+        <input id="name" name="Name" type="text" placeholder="Enter your name" required />
+
+        <label for="email">Your Email:</label>
+        <input id="email" name="Email" type="email" placeholder="Enter your email" required />
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="Message" placeholder="Write your message..." required></textarea>
+
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
   </main>
 
   <footer>
-    &copy; <span id="year"></span> Up North Volleyball. All rights reserved.
+    © <span id="year"></span> Up North Volleyball | Seattle, WA
   </footer>
 
   <script>
-    // Show the correct section
-    function showSection(id) {
-      document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
-      document.getElementById(id).classList.remove("hidden");
-    }
-
-    // Set current year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    function showPage(id) {
+      document.querySelectorAll(".page").forEach(p => (p.style.display = "none"));
+      document.getElementById(id).style.display = "block";
+      document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
+      event.target.classList.add("active");
+    }
   </script>
 </body>
 </html>
