@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
-      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1600');
+      background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&q=80&w=1600');
       background-size: cover;
       background-position: center;
       color: white;
@@ -18,7 +18,7 @@
     }
 
     header {
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.75);
       padding: 1.5rem;
       display: flex;
       flex-wrap: wrap;
@@ -32,7 +32,7 @@
     }
 
     nav button {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       border: none;
       color: black;
       font-weight: bold;
@@ -57,13 +57,13 @@
     }
 
     .content {
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
       margin-top: 2rem;
     }
@@ -76,41 +76,12 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    input, textarea {
+    .card img {
       width: 100%;
-      max-width: 400px;
-      padding: 0.75rem;
-      border-radius: 0.5rem;
-      border: none;
-      font-size: 1rem;
-    }
-
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    button.submit-btn {
-      background: #facc15;
-      border: none;
-      color: black;
-      font-weight: bold;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    button.submit-btn:hover {
-      background: #ffe45e;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 0.75rem;
+      margin-bottom: 0.75rem;
     }
 
     footer {
@@ -120,10 +91,14 @@
       font-size: 0.9rem;
     }
 
-    label {
-      align-self: flex-start;
-      margin-left: calc(50% - 200px);
+    a {
+      color: #facc15;
+      text-decoration: none;
       font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -141,34 +116,40 @@
   </header>
 
   <main id="content">
+    <!-- Home -->
     <div id="home" class="content page">
       <h2>Welcome to Up North Volleyball!</h2>
-      <p>Seattle’s local hub for competitive and community volleyball leagues.</p>
+      <p>Seattle’s home for competitive and community volleyball leagues — run by local players, for local players.</p>
     </div>
 
+    <!-- About -->
     <div id="about" class="content page" style="display:none;">
       <h2>About Us</h2>
       <p>
-        Up North Volleyball was founded by <strong>Dane Erosa</strong>, a passionate local player from Seattle.
-        With years of experience in both indoor and beach volleyball, Dane built Up North Volleyball to bring
-        competitive, fun, and community-driven leagues to players across the city.
+        Up North Volleyball was founded by <strong>Dane Erosa</strong>, a lifelong Seattle resident and dedicated local player.
+        Dane created Up North Volleyball to provide a fun, competitive, and community-driven environment for volleyball
+        enthusiasts across the Seattle area. Whether you’re new to the game or an experienced player, there’s a league for you.
       </p>
     </div>
 
+    <!-- Locations -->
     <div id="locations" class="content page" style="display:none;">
       <h2>Current Locations</h2>
       <div class="cards">
         <div class="card">
+          <img src="https://www.billingsmiddleschool.org/editoruploads/images/General/Front_of_School.jpg" alt="Billings Middle School">
           <h3>Billings Middle School</h3>
           <p>Seattle, WA</p>
         </div>
         <div class="card">
+          <img src="https://www.seattleymca.org/sites/default/files/styles/max_2600x2600/public/2022-06/downtown-seattle-ymca-exterior-2022-06.jpg?itok=Kyl1O-k8" alt="Downtown Seattle YMCA">
           <h3>Downtown Seattle YMCA</h3>
           <p>Seattle, WA</p>
         </div>
       </div>
     </div>
 
+    <!-- Pricing -->
     <div id="pricing" class="content page" style="display:none;">
       <h2>Pricing</h2>
       <div class="cards">
@@ -183,6 +164,7 @@
       </div>
     </div>
 
+    <!-- Leagues -->
     <div id="leagues" class="content page" style="display:none;">
       <h2>Current Ongoing Leagues</h2>
       <div class="cards">
@@ -203,32 +185,18 @@
       </div>
     </div>
 
+    <!-- Contact -->
     <div id="contact" class="content page" style="display:none;">
       <h2>Contact Us</h2>
       <p>
-        Have questions or want to sign up your team?<br />
-        Email us directly at
-        <a href="mailto:Upnorthvolleyballwa@gmail.com" style="color:#facc15;">Upnorthvolleyballwa@gmail.com</a>
-        or use the form below.
+        Have questions or want to register your team?<br>
+        Email us at:
+        <a href="mailto:Upnorthvolleyballwa@gmail.com">Upnorthvolleyballwa@gmail.com</a>
       </p>
-
-      <form action="https://formsubmit.co/Upnorthvolleyballwa@gmail.com" method="POST">
-        <!-- Required FormSubmit settings -->
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="New Message from Up North Volleyball Website">
-        <input type="hidden" name="_template" value="table">
-
-        <label for="name">Your Name:</label>
-        <input id="name" name="Name" type="text" placeholder="Enter your name" required />
-
-        <label for="email">Your Email:</label>
-        <input id="email" name="Email" type="email" placeholder="Enter your email" required />
-
-        <label for="message">Message:</label>
-        <textarea id="message" name="Message" placeholder="Write your message..." required></textarea>
-
-        <button type="submit" class="submit-btn">Send Message</button>
-      </form>
+      <p>
+        Follow us on Facebook:<br>
+        <a href="https://www.facebook.com/UpNorthVolleyball" target="_blank">Up North Volleyball on Facebook</a>
+      </p>
     </div>
   </main>
 
