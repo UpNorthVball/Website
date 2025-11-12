@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Up North Volleyball</title>
+  <style>
+    /* ---------- General Styles ---------- */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(to bottom, #004e92, #000428);
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 20px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+      letter-spacing: 1px;
+    }
+
+    /* ---------- Navigation ---------- */
+    nav {
+      margin-top: 15px;
+    }
+
+    nav button {
+      background-color: #ffb347;
+      border: none;
+      color: #000;
+      padding: 12px 25px;
+      margin: 8px;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    nav button:hover {
+      background-color: #ffd580;
+      transform: translateY(-2px);
+    }
+
+    /* ---------- Content Sections ---------- */
+    section {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Up North Volleyball</h1>
+    <nav>
+      <button onclick="showSection('schedule')">League Schedule</button>
+      <button onclick="showSection('about')">About Me</button>
+      <button onclick="showSection('pricing')">Pricing</button>
+      <button onclick="showSection('locations')">Current Locations</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="schedule">
+      <h2>League Schedule</h2>
+      <p>Coming soon! Stay tuned for our next league lineup and match times.</p>
+    </section>
+
+    <section id="about" class="hidden">
+      <h2>About Me</h2>
+      <p>
+        Welcome to Up North Volleyball! We’re a community-driven organization that brings together players of all skill levels to enjoy fun, competitive volleyball across the region.
+      </p>
+    </section>
+
+    <section id="pricing" class="hidden">
+      <h2>Pricing</h2>
+      <p>Team registration: $250 per season<br />Individual sign-up: $40 per player</p>
+    </section>
+
+    <section id="locations" class="hidden">
+      <h2>Current Locations</h2>
+      <p>We currently host games in Traverse City, Petoskey, and Gaylord, Michigan.</p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> Up North Volleyball. All rights reserved.
+  </footer>
+
+  <script>
+    // Show the correct section
+    function showSection(id) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+    }
+
+    // Set current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
