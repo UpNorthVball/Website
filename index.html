@@ -23,18 +23,20 @@
     footer{padding:18px;text-align:center;color:rgba(255,255,255,0.7)}
     .locations{display:flex;gap:40px;flex-wrap:wrap}
     .locations div{flex:1;min-width:250px}
-    .locations img{width:40%;height:auto;object-fit:cover;border-radius:8px;margin-top:6px}
+    .locations img{width:150px;height:150px;object-fit:cover;border-radius:8px;margin-top:6px}
     .locations h3{margin-bottom:6px}
     .contact form{display:grid;gap:10px}
     .btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:#111;font-weight:700;text-decoration:none}
     .pricing div,.leagues div{margin-bottom:18px}
-    .leagues ul{display:flex;flex-direction:column;gap:18px}
-    .leagues ul li{background:rgba(255,255,255,0.05);padding:12px;border-radius:8px}
+    .leagues ul{display:flex;flex-direction:column;gap:18px;list-style:none;padding-left:0}
+    .leagues ul li{background:rgba(255,255,255,0.05);padding:12px;border-radius:8px;position:relative;padding-left:28px}
+    .leagues ul li::before{content:"🏐";position:absolute;left:0;top:0;font-size:18px;line-height:1.2}
     .league-text{margin-bottom:12px}
     .league-columns{display:flex;gap:40px;flex-wrap:wrap}
     .league-columns div{flex:1;min-width:250px}
-    .league-text ul{padding-left:20px}
-    .league-text ul li{margin-bottom:12px}
+    .league-text ul{padding-left:0}
+    .league-text ul li{margin-bottom:12px;list-style:none;position:relative;padding-left:28px}
+    .league-text ul li::before{content:"🏐";position:absolute;left:0;top:0;font-size:18px;line-height:1.2}
     @media(max-width:600px){h1{font-size:28px}.hero{padding:48px 18px}.locations{flex-direction:column;gap:18px}.league-columns{flex-direction:column;gap:18px}}
   </style>
 </head>
@@ -106,7 +108,6 @@
       </div>
     </section>
 
-    <!-- Locations, Ongoing Leagues, Contact sections remain unchanged -->
     <section id="locations" class="card" style="margin-top:18px">
       <div class="section-title"><h2>Locations</h2></div>
       <div class="locations">
@@ -130,17 +131,17 @@
           <h4>Billings Middle School</h4>
           <ul>
             <li>Mondays: KOB Reverse 4's - 6:30 - 10:30<br>12 pairs (One guy & One girl)<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</li>
-            <li style="margin-top:12px">Tuesdays: Reverse 4's - 6:30 - 10:30<br>6 teams<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</li>
-            <li style="margin-top:12px">Wednesdays: Reverse 4's - 7:30 - 10:30<br>6 teams<br>Time Slots: 7:30 - 8:40, 8:40 - 9:50, 9:50 - 11:00</li>
-            <li style="margin-top:12px">Thursdays: Reverse 4's - 6:30 - 10:30<br>6 teams<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</li>
+            <li>Tuesdays: Reverse 4's - 6:30 - 10:30<br>6 teams<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</li>
+            <li>Wednesdays: Reverse 4's - 7:30 - 10:30<br>6 teams<br>Time Slots: 7:30 - 8:40, 8:40 - 9:50, 9:50 - 11:00</li>
+            <li>Thursdays: Reverse 4's - 6:30 - 10:30<br>6 teams<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</li>
           </ul>
         </div>
         <div class="league-text">
           <h4>Downtown Seattle YMCA</h4>
           <ul>
             <li>Mondays: Reverse 4's - 6:00 - 9:00<br>4 teams<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</li>
-            <li style="margin-top:12px">Tuesdays: Reverse 4's - 6:00 - 9:00<br>4 teams<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</li>
-            <li style="margin-top:12px">Thursday: Reverse 4's - 6:00 - 9:00<br>4 teams<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</li>
+            <li>Tuesdays: Reverse 4's - 6:00 - 9:00<br>4 teams<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</li>
+            <li>Thursday: Reverse 4's - 6:00 - 9:00<br>4 teams<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</li>
           </ul>
         </div>
       </div>
