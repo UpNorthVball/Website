@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Up North Volleyball</title>
+  <style>
+    :root{--accent:#ff6a00;--dark:#111;--muted:rgba(255,255,255,0.85)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--muted);background:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), url('https://unsplash.com/photos/skUTVJi8-jc/download?force=true') center/cover no-repeat fixed;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;background:rgba(0,0,0,0.35);backdrop-filter:blur(4px)}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;background:url('https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/407618788_122129208362076327_7937567063686365697_n.jpg?_nc_cat=102&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=IwiuFmWxck4Q7kNvwEzBj8n&_nc_oc=AdlqL1OMFcVXQnVaKtwDD8sJA7r5maMF63_xO5piBR2LkVdCHD8FBEjSCPujT_5e8jJr5LJwVye4jAGJRSwsG6l6&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=iq9M0bDqWTMrRz0cSRZSyw&oh=00_Afk1QylQTbO_5rrrVzwBN1K_qMu4jVyZlmuyW_ggQuA4xA&oe=693A454A') center/cover no-repeat;}
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
+    nav a:hover{text-decoration:underline}
+    .hero{padding:96px 28px 48px;max-width:1100px;margin:0 auto;text-align:left}
+    h1{font-size:44px;margin:0 0 6px;color:#fff}
+    p.lead{margin:0 0 18px;color:rgba(255,255,255,0.9)}
+    .card{background:rgba(0,0,0,0.5);padding:18px;border-radius:12px;margin-top:12px}
+    main{max-width:1100px;margin:24px auto;padding:0 18px}
+    .section-title{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+    .orange{color:var(--accent)}
+    footer{padding:18px;text-align:center;color:rgba(255,255,255,0.7)}
+    .locations{display:flex;gap:40px;flex-wrap:wrap}
+    .locations div{flex:1;min-width:250px}
+    .locations img{width:40%;height:auto;object-fit:cover;border-radius:8px;margin-top:6px}
+    .locations h3{margin-bottom:6px}
+    .contact form{display:grid;gap:10px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:#111;font-weight:700;text-decoration:none}
+    .pricing div,.leagues div{margin-bottom:18px}
+    .leagues ul{display:flex;flex-direction:column;gap:18px}
+    .leagues ul li{background:rgba(255,255,255,0.05);padding:12px;border-radius:8px}
+    .league-text{margin-bottom:12px}
+    .league-columns{display:flex;gap:40px;flex-wrap:wrap}
+    .league-columns div{flex:1;min-width:250px}
+    .league-text ul{padding-left:20px}
+    .league-text ul li{margin-bottom:12px}
+    @media(max-width:600px){h1{font-size:28px}.hero{padding:48px 18px}.locations{flex-direction:column;gap:18px}.league-columns{flex-direction:column;gap:18px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo"></div>
+      <div>
+        <div style="font-weight:700">Up North Volleyball</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.7)">Seattle — Adult & Rec Leagues</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#about">Who Are We?</a>
+      <a href="#locations">Locations</a>
+      <a href="#league-info">League Information</a>
+      <a href="#leagues">Ongoing Leagues</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Up North Volleyball</h1>
+    <p class="lead">Dominate on the Courts, Connect with your Community</p>
+    <div class="card">
+      <strong>Next season open for registration — limited team spots.</strong>
+      <div style="margin-top:8px"><a class="btn" href="#contact">Register a Team</a></div>
+    </div>
+  </section>
+
+  <main>
+    <section id="about" class="card">
+      <div class="section-title"><h2>Who Are We?</h2></div>
+      <p>Up North Volleyball is a community-centered volleyball organization based in Seattle, Washington. Our mission is to offer engaging and competitive volleyball experiences while fostering meaningful connections. Recognizing that Seattle is a transient city, we are committed to creating an inclusive and welcoming environment where players can build community and friendships through the sport they love.</p>
+      <p>The league levels we primarily host are advertised as BB/BB+ as well as some BB- leagues that act as general pipelines to the more competitive leagues.</p>
+      <p style="margin-top:8px"><strong>About the Founder:</strong> Dane Erosa is a local Seattleite and volleyball player who founded Up North Volleyball to create competitive yet inclusive leagues for the community.</p>
+      <p style="margin-top:8px">Follow us on <a href="https://www.facebook.com/UpNorthVolleyball" target="_blank" style="color:var(--accent)">Facebook</a> for announcements, or connect with Dane on <em>LinkedIn</em> (link available on request).</p>
+    </section>
+
+    <section id="league-info" class="card" style="margin-top:18px">
+      <div class="section-title"><h2>League Information</h2></div>
+      <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px;flex-wrap:wrap">
+        <img src="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/584033738_122262090086076327_998893460225462652_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s206x206_tt6&_nc_cat=102&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=50ad20&_nc_ohc=aboGLjtke18Q7kNvwGMcc2Z&_nc_oc=AdnMgHZdnxf4cBuzUnT8GGT6jv_3HG3e3eW-QAnRy10tgXn0Dm-bubCtk88rI4yG05g0bGNdBOxKZfcz6dxGcMkH&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=PvCwVHVXB0Olkd9kGi1lsA&oh=00_AfkbmOzqmE3PBLPcMbI2MjMqLt-fgsK4OKz36V8-wEKQqg&oe=693A336D" 
+             alt="League Image 1" style="width:150px; height:150px; object-fit:cover; border-radius:8px;">
+        <img src="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/585583796_122262090050076327_2758532206424142451_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s206x206_tt6&_nc_cat=111&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=50ad20&_nc_ohc=uOqF2QhVyx8Q7kNvwFDHmlN&_nc_oc=AdlWubgykmN8m2qrEBMIgadyu7b60VO3A1BRw3LG64uVRRlDG5luMSUSiEp2u137KZpBtu9ESQ8XViv73EfquXGP&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=PvCwVHVXB0Olkd9kGi1lsA&oh=00_Afni7EctkhUSxVZWNq41oo0pJyTdH5MBgzN-df3bZAdOXw&oe=693A5C75" 
+             alt="League Image 2" style="width:150px; height:150px; object-fit:cover; border-radius:8px;">
+        <img src="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/583339157_122262090068076327_8126758955767406528_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=111&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=833d8c&_nc_ohc=0y3gfhD4qo0Q7kNvwFNtRjC&_nc_oc=AdmHCBjNUbOvJ4MQAY68f2WUzIxXNjkkUjJ3gFNFPlEUt0ptiDaNVue1AbbJJCHMyjDqapCbgWq5U9fBEl7jEPVA&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=VU7w417-utnk6Onz1EOVYw&oh=00_AfnyPbNddS0VaoHNe-6GjFK-6nGNmfEuQobw-VvvbcL4LQ&oe=693A6166" 
+             alt="League Image 3" style="width:150px; height:150px; object-fit:cover; border-radius:8px;">
+        <img src="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/580565164_122261087888076327_3662231164972742991_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=833d8c&_nc_ohc=BKrXWc9Q7UEQ7kNvwEJBNkl&_nc_oc=AdnSiUspP79FiF0rrsioF2nBCls066ANQzM_n36nuvrzAgyeQOJ9MKKjQY7a037xmA77Bk0ZOxCKcd4_t8e4oJCQ&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=rtUO0XK7Hrm7ijSke9iUjA&oh=00_Afnol-uIBfIHaAFP99g51876dzkAfB78NG35vC9zTv3R3A&oe=693A3997" 
+             alt="League Image 4" style="width:150px; height:150px; object-fit:cover; border-radius:8px;">
+        <img src="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/574280071_122259605738076327_3691273371948633521_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=102&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=833d8c&_nc_ohc=aHmvFWrx2qEQ7kNvwGmfS8T&_nc_oc=Adlc4dCsn-R79HnL5bxy0ds9yuqrDS7FfBiKoNMDJEkHVLjKZ8OzlZRtNBkuFjaQI6Ga3CfOibGzzQZ20LYbLjSP&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=fgsCnz6lXn_Hm6bluIpinQ&oh=00_AfkzL2gWOteo7BsqUr60v3cPEZ2JF0W6mkAb0J2-zkh3lQ&oe=693A4F53" 
+             alt="League Image 5" style="width:150px; height:150px; object-fit:cover; border-radius:8px;">
+      </div>
+      <div class="pricing">
+        <div>
+          <h3 class="orange">Downtown Seattle YMCA</h3>
+          <p><strong>$400</strong> per team for a 5-week league</p>
+          <p>Each time slot is 1.5 hours per night, every team will play every week including finals.</p>
+          <p>Finals are bracketed into gold and silver to offer the most competitive games for the season finales.</p>
+        </div>
+        <div>
+          <h3 class="orange">Billings Middle School (North Seattle)</h3>
+          <p><strong>$500</strong> per team for a 7-week Reverse 4's league</p>
+          <p>Includes a 1 hour 20 minute time slot every night, every team plays weekly including finals.</p>
+          <p><strong>$570</strong> per team for a 7-week Coed 6's league</p>
+          <p>Includes a 1 hour 20 minute time slot every night, every team plays weekly including finals.</p>
+          <p>Finals are bracketed into Gold, Silver, and Bronze to offer the most competitive season finales.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Locations, Ongoing Leagues, Contact sections remain unchanged -->
+    <section id="locations" class="card" style="margin-top:18px">
+      <div class="section-title"><h2>Locations</h2></div>
+      <div class="locations">
+        <div>
+          <h3>Billings Middle School</h3>
+          <p>Address: 12351 8th Ave NE, Seattle, WA 98125</p>
+          <img src="https://images.squarespace-cdn.com/content/v1/51b4c245e4b0c02e88c68f66/4e7eccc9-9c9c-457f-ae59-8d9f832d810c/Billings+Middle+School+%28MS+Top%29+%26+Logo+Guy+-+nontrans.png?format=750w" alt="Billings Middle School">
+        </div>
+        <div>
+          <h3>Downtown Seattle YMCA</h3>
+          <p>Address: 909 4th Ave, Seattle, WA 98104</p>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/YMCA_of_the_USA_2010_logo_blue-purple.svg/500px-YMCA_of_the_USA_2010_logo_blue-purple.svg.png" alt="Downtown Seattle YMCA">
+        </div>
+      </div>
+    </section>
+
+    <section id="leagues" class="card" style="margin-top:18px">
+      <div class="section-title"><h2>Ongoing Leagues</h2></div>
+      <div class="league-columns">
+        <div class="league-text">
+          <h4>Billings Middle School</h4>
+          <ul>
+            <li>Mondays: KOB Reverse 4's - 6:30 - 10:30<br>12 pairs (One guy & One girl)<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</li>
+            <li style="margin-top:12px">Tuesdays: Reverse 4's - 6:30 - 10:30<br>6 teams<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</li>
+            <li style="margin-top:12px">Wednesdays: Reverse 4's - 7:30 - 10:30<br>6 teams<br>Time Slots: 7:30 - 8:40, 8:40 - 9:50, 9:50 - 11:00</li>
+            <li style="margin-top:12px">Thursdays: Reverse 4's - 6:30 - 10:30<br>6 teams<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</li>
+          </ul>
+        </div>
+        <div class="league-text">
+          <h4>Downtown Seattle YMCA</h4>
+          <ul>
+            <li>Mondays: Reverse 4's - 6:00 - 9:00<br>4 teams<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</li>
+            <li style="margin-top:12px">Tuesdays: Reverse 4's - 6:00 - 9:00<br>4 teams<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</li>
+            <li style="margin-top:12px">Thursday: Reverse 4's - 6:00 - 9:00<br>4 teams<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="card contact" style="margin-top:18px">
+      <div class="section-title"><h2>Contact Us</h2></div>
+      <p>Questions or ready to register your team? Email us at <a href="mailto:Upnorthvolleyballwa@gmail.com" style="color:var(--accent)">Upnorthvolleyballwa@gmail.com</a></p>
+      <p>Find us on Facebook: <a href="https://www.facebook.com/UpNorthVolleyball" target="_blank" style="color:var(--accent)">Up North Volleyball (Facebook)</a></p>
+      <h4 style="margin-top:12px">Quick Message</h4>
+      <form action="mailto:Upnorthvolleyballwa@gmail.com" method="POST" enctype="text/plain">
+        <input type="text" name="Name" placeholder="Your name" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:inherit">
+        <input type="email" name="Email" placeholder="Your email" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:inherit">
+        <textarea name="Message" placeholder="Tell us about your team / question" rows="4" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:inherit"></textarea>
+        <button class="btn" type="submit">Send Email</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer>
+    <div>© Up North Volleyball — Seattle</div>
+    <div style="margin-top:6px;font-size:13px;color:rgba(255,255,255,0.6)"></div>
+  </footer>
+</body>
+</html>
