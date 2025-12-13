@@ -7,28 +7,77 @@
   <style>
     :root{--accent:#ff6a00;--dark:#111;--muted:rgba(255,255,255,0.85)}
     *{box-sizing:border-box}
+    html { scroll-behavior: smooth; }
     body{
       margin:0;
       font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
       color:var(--muted);
-      background:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), url('https://unsplash.com/photos/skUTVJi8-jc/download?force=true') center/cover no-repeat;
+      position:relative;
+      z-index:0;
+      background:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), url('https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/407618788_122129208362076327_7937567063686365697_n.jpg?_nc_cat=102&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=rnueto2g95IQ7kNvwGTKr-B&_nc_oc=AdnZy8aC4Q_ydkoH7TiHap8eaakixWVg1snfdcI8KCrd98z-VQhGkZoMzwDCA44O99g9B34KNzmuo2i9hB8s3mLf&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=DotYx6BsOeSOq3C18mlQaA&oh=00_Afnn71f2sYKu0BJx-MDXd5ftv-h64qFEq85qt7FOmYufNg&oe=6942D70A') center/cover no-repeat;
+      background-attachment: fixed;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
     }
+    body::before{
+      content:'';
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.35);
+      z-index:-1;
+    }
     header{
-      display:flex;align-items:center;justify-content:space-between;padding:18px 28px;background:rgba(0,0,0,0.35);backdrop-filter:blur(4px)
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 28px;
+      background:rgba(0,0,0,0.35);
+      backdrop-filter:blur(4px);
+      position:sticky;
+      top:0;
+      z-index:1000;
     }
     .brand{display:flex;gap:12px;align-items:center}
     .logo{
       width:56px;height:56px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;
-      background:url('https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/407618788_122129208362076327_7937567063686365697_n.jpg?_nc_cat=102') center/cover no-repeat;
+      background:url('https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/407618788_122129208362076327_7937567063686365697_n.jpg?_nc_cat=102&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=rnueto2g95IQ7kNvwGTKr-B&_nc_oc=AdnZy8aC4Q_ydkoH7TiHap8eaakixWVg1snfdcI8KCrd98z-VQhGkZoMzwDCA44O99g9B34KNzmuo2i9hB8s3mLf&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=DotYx6BsOeSOq3C18mlQaA&oh=00_Afnn71f2sYKu0BJx-MDXd5ftv-h64qFEq85qt7FOmYufNg&oe=6942D70A') center/cover no-repeat;
+    }
+    nav{
+      display:flex;
+      align-items:center;
+      gap:12px;
     }
     nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
     nav a:hover{text-decoration:underline}
+    .hamburger{
+      display:none;
+      flex-direction:column;
+      cursor:pointer;
+      gap:5px;
+    }
+    .hamburger div{
+      width:25px;
+      height:3px;
+      background:var(--muted);
+      transition:0.3s;
+    }
+    .menu-toggle:checked + nav{
+      display:flex;
+      flex-direction:column;
+      position:absolute;
+      top:70px;
+      right:28px;
+      background:rgba(0,0,0,0.85);
+      padding:12px;
+      border-radius:8px;
+    }
     .hero{padding:96px 28px 48px;max-width:1100px;margin:0 auto;text-align:left}
     h1{font-size:44px;margin:0 0 6px;color:#fff}
     p.lead{margin:0 0 18px;color:rgba(255,255,255,0.9)}
-    .card{background:rgba(0,0,0,0.5);padding:18px;border-radius:12px;margin-top:12px}
+    .card{background:rgba(0,0,0,0.5);padding:18px;border-radius:12px;margin-top:12px;opacity:0; transform: translateY(30px); transition: 0.8s ease-out;}
     main{max-width:1100px;margin:24px auto;padding:0 18px}
     .section-title{display:flex;align-items:center;gap:12px;margin-bottom:12px}
     .orange{color:var(--accent)}
@@ -41,13 +90,44 @@
       object-fit:cover;
       border-radius:8px;
       margin-top:6px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .locations img.billings{
       object-fit:contain;
       background:#111;
     }
+    .locations img:hover{
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--accent);
+    }
+    .league-columns img{
+      width:100%;
+      max-width:150px;
+      height:auto;
+      border-radius:8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .league-columns img:hover{
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--accent);
+    }
     .contact form{display:grid;gap:10px}
-    .btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:#111;font-weight:700;text-decoration:none}
+    .btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:#111;font-weight:700;text-decoration:none;cursor:pointer;transition:0.2s}
+    .btn:hover{opacity:0.9; box-shadow: 0 0 12px var(--accent);}
+    .contact input, .contact textarea{
+      padding:12px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.3);
+      background:rgba(255,255,255,0.15);
+      color:#fff;
+      font-size:16px;
+      transition:0.2s;
+    }
+    .contact input:focus, .contact textarea:focus{
+      outline:none;
+      border:1px solid var(--accent);
+      background:rgba(255,255,255,0.25);
+    }
     .pricing div,.leagues div{margin-bottom:18px}
     .leagues ul{display:flex;flex-direction:column;gap:18px;list-style:none;padding-left:0}
     .leagues ul li{background:rgba(255,255,255,0.05);padding:12px;border-radius:8px;position:relative;padding-left:28px}
@@ -59,23 +139,19 @@
     .league-text ul li{margin-bottom:12px;list-style:none;position:relative;padding-left:28px}
     .league-text ul li::before{content:"🏐";position:absolute;left:0;top:0;font-size:18px;line-height:1.2}
 
-    @media(max-width:600px){
-      h1{font-size:28px}
+    @media(max-width:800px){
+      nav{
+        display:none;
+      }
+      .hamburger{
+        display:flex;
+      }
       .hero{padding:48px 18px}
       .locations{flex-direction:column;gap:18px}
       .league-columns{flex-direction:column;gap:18px}
-
-      /* Make league images responsive */
-      #league-info img{
-        width:100%;
-        max-width:150px;
-        height:auto;
-      }
-
-      /* Adjust background for mobile */
-      body{
-        background-attachment:scroll;
-      }
+      #league-info img{width:100%;max-width:150px;height:auto;}
+      body::before{background:rgba(0,0,0,0.55);}
+      body{background-attachment:scroll;background-position:top center;}
     }
   </style>
 </head>
@@ -88,6 +164,12 @@
         <div style="font-size:13px;color:rgba(255,255,255,0.7)">Seattle — Adult & Rec Leagues</div>
       </div>
     </div>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" style="display:none;">
+    <label for="menu-toggle" class="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </label>
     <nav>
       <a href="#about">Who Are We?</a>
       <a href="#locations">Locations</a>
@@ -97,7 +179,7 @@
     </nav>
   </header>
 
-  <section class="hero">
+  <section class="hero card">
     <h1>Up North Volleyball</h1>
     <p class="lead">Dominate on the Courts, Connect with your Community</p>
     <div class="card">
@@ -119,9 +201,9 @@
       <div class="section-title"><h2>League Information</h2></div>
       <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px;flex-wrap:wrap">
         <img src="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/584033738_122262090086076327_998893460225462652_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s206x206_tt6&_nc_cat=102&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=50ad20&_nc_ohc=aboGLjtke18Q7kNvwGMcc2Z&_nc_oc=AdnMgHZdnxf4cBuzUnT8GGT6jv_3HG3e3eW-QAnRy10tgXn0Dm-bubCtk88rI4yG05g0bGNdBOxKZfcz6dxGcMkH&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=PvCwVHVXB0Olkd9kGi1lsA&oh=00_AfkbmOzqmE3PBLPcMbI2MjMqLt-fgsK4OKz36V8-wEKQqg&oe=693A336D" 
-             alt="League Image 1" style="width:150px; height:150px; object-fit:cover; border-radius:8px;">
+             alt="League Image 1">
         <img src="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/585583796_122262090050076327_2758532206424142451_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s206x206_tt6&_nc_cat=111&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=50ad20&_nc_ohc=uOqF2QhVyx8Q7kNvwFDHmlN&_nc_oc=AdlWubgykmN8m2qrEBMIgadyu7b60VO3A1BRw3LG64uVRRlDG5luMSUSiEp2u137KZpBtu9ESQ8XViv73EfquXGP&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=PvCwVHVXB0Olkd9kGi1lsA&oh=00_Afni7EctkhUSxVZWNq41oo0pJyTdH5MBgzN-df3bZAdOXw&oe=693A5C75" 
-             alt="League Image 2" style="width:150px; height:150px; object-fit:cover; border-radius:8px;">
+             alt="League Image 2">
       </div>
       <div class="pricing">
         <div>
@@ -149,8 +231,7 @@
           <p>Address: 12351 8th Ave NE, Seattle, WA 98125</p>
           <img src="https://images.squarespace-cdn.com/content/v1/51b4c245e4b0c02e88c68f66/4e7eccc9-9c9c-457f-ae59-8d9f832d810c/Billings+Middle+School+%28MS+Top%29+%26+Logo+Guy+-+nontrans.png?format=750w" 
                alt="Billings Middle School" 
-               class="billings"
-               style="width:150px; height:150px; border-radius:8px;">
+               class="billings">
         </div>
         <div>
           <h3>Downtown Seattle YMCA</h3>
@@ -185,22 +266,35 @@
 
     <section id="contact" class="card contact" style="margin-top:18px">
       <div class="section-title"><h2>Contact Us</h2></div>
-      <p>Questions or ready to register your team? Send us a message below or find us on Facebook:</p>
+      <p>Questions or ready to register your team? Email us at <a href="mailto:Upnorthvolleyballwa@gmail.com" style="color:var(--accent)">Upnorthvolleyballwa@gmail.com</a></p>
       <p>Find us on Facebook: <a href="https://www.facebook.com/UpNorthVolleyball" target="_blank" style="color:var(--accent)">Up North Volleyball (Facebook)</a></p>
       <h4 style="margin-top:12px">Quick Message</h4>
-      <!-- Formspree Form -->
-      <form action="https://formspree.io/f/xanrvqvg" method="POST">
-        <input type="text" name="name" placeholder="Your name" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:inherit">
-        <input type="email" name="email" placeholder="Your email" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:inherit">
-        <textarea name="message" placeholder="Tell us about your team / question" rows="4" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:inherit"></textarea>
+      <!-- Formspree form -->
+      <form action="https://formspree.io/f/mnqwyprl" method="POST">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="_replyto" placeholder="Your email" required>
+        <textarea name="message" placeholder="Tell us about your team / question" rows="4" required></textarea>
         <button class="btn" type="submit">Send Message</button>
       </form>
     </section>
-
   </main>
 
   <footer>
     <div>© Up North Volleyball — Seattle</div>
   </footer>
+
+  <script>
+    // Fade-in scroll animation
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, {threshold:0.1});
+    cards.forEach(card => observer.observe(card));
+  </script>
 </body>
 </html>
