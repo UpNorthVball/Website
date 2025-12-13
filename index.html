@@ -7,77 +7,29 @@
   <style>
     :root{--accent:#ff6a00;--dark:#111;--muted:rgba(255,255,255,0.85)}
     *{box-sizing:border-box}
-    html { scroll-behavior: smooth; }
     body{
       margin:0;
       font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
       color:var(--muted);
-      position:relative;
-      z-index:0;
       background:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), url('https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/407618788_122129208362076327_7937567063686365697_n.jpg?_nc_cat=102&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=rnueto2g95IQ7kNvwGTKr-B&_nc_oc=AdnZy8aC4Q_ydkoH7TiHap8eaakixWVg1snfdcI8KCrd98z-VQhGkZoMzwDCA44O99g9B34KNzmuo2i9hB8s3mLf&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=DotYx6BsOeSOq3C18mlQaA&oh=00_Afnn71f2sYKu0BJx-MDXd5ftv-h64qFEq85qt7FOmYufNg&oe=6942D70A') center/cover no-repeat;
-      background-attachment: fixed;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-    }
-    body::before{
-      content:'';
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background:rgba(0,0,0,0.35);
-      z-index:-1;
+      background-attachment: fixed;
     }
     header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:18px 28px;
-      background:rgba(0,0,0,0.35);
-      backdrop-filter:blur(4px);
-      position:sticky;
-      top:0;
-      z-index:1000;
+      display:flex;align-items:center;justify-content:space-between;padding:18px 28px;background:rgba(0,0,0,0.35);backdrop-filter:blur(4px)
     }
     .brand{display:flex;gap:12px;align-items:center}
     .logo{
       width:56px;height:56px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;
-      background:url('https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/407618788_122129208362076327_7937567063686365697_n.jpg?_nc_cat=102&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=rnueto2g95IQ7kNvwGTKr-B&_nc_oc=AdnZy8aC4Q_ydkoH7TiHap8eaakixWVg1snfdcI8KCrd98z-VQhGkZoMzwDCA44O99g9B34KNzmuo2i9hB8s3mLf&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=DotYx6BsOeSOq3C18mlQaA&oh=00_Afnn71f2sYKu0BJx-MDXd5ftv-h64qFEq85qt7FOmYufNg&oe=6942D70A') center/cover no-repeat;
-    }
-    nav{
-      display:flex;
-      align-items:center;
-      gap:12px;
+      background:url('https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/407618788_122129208362076327_7937567063686365697_n.jpg?_nc_cat=102') center/cover no-repeat;
     }
     nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
     nav a:hover{text-decoration:underline}
-    .hamburger{
-      display:none;
-      flex-direction:column;
-      cursor:pointer;
-      gap:5px;
-    }
-    .hamburger div{
-      width:25px;
-      height:3px;
-      background:var(--muted);
-      transition:0.3s;
-    }
-    .menu-toggle:checked + nav{
-      display:flex;
-      flex-direction:column;
-      position:absolute;
-      top:70px;
-      right:28px;
-      background:rgba(0,0,0,0.85);
-      padding:12px;
-      border-radius:8px;
-    }
     .hero{padding:96px 28px 48px;max-width:1100px;margin:0 auto;text-align:left}
     h1{font-size:44px;margin:0 0 6px;color:#fff}
     p.lead{margin:0 0 18px;color:rgba(255,255,255,0.9)}
-    .card{background:rgba(0,0,0,0.5);padding:18px;border-radius:12px;margin-top:12px;opacity:0; transform: translateY(30px); transition: 0.8s ease-out;}
+    .card{background:rgba(0,0,0,0.5);padding:18px;border-radius:12px;margin-top:12px}
     main{max-width:1100px;margin:24px auto;padding:0 18px}
     .section-title{display:flex;align-items:center;gap:12px;margin-bottom:12px}
     .orange{color:var(--accent)}
@@ -90,68 +42,150 @@
       object-fit:cover;
       border-radius:8px;
       margin-top:6px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .locations img.billings{
       object-fit:contain;
       background:#111;
     }
-    .locations img:hover{
-      transform: scale(1.05);
-      box-shadow: 0 0 20px var(--accent);
-    }
-    .league-columns img{
-      width:100%;
-      max-width:150px;
-      height:auto;
-      border-radius:8px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .league-columns img:hover{
-      transform: scale(1.05);
-      box-shadow: 0 0 20px var(--accent);
-    }
     .contact form{display:grid;gap:10px}
-    .btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:#111;font-weight:700;text-decoration:none;cursor:pointer;transition:0.2s}
-    .btn:hover{opacity:0.9; box-shadow: 0 0 12px var(--accent);}
-    .contact input, .contact textarea{
-      padding:12px;
-      border-radius:8px;
-      border:1px solid rgba(255,255,255,0.3);
-      background:rgba(255,255,255,0.15);
-      color:#fff;
-      font-size:16px;
-      transition:0.2s;
-    }
-    .contact input:focus, .contact textarea:focus{
-      outline:none;
-      border:1px solid var(--accent);
-      background:rgba(255,255,255,0.25);
-    }
+    .btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:#111;font-weight:700;text-decoration:none}
     .pricing div,.leagues div{margin-bottom:18px}
-    .leagues ul{display:flex;flex-direction:column;gap:18px;list-style:none;padding-left:0}
-    .leagues ul li{background:rgba(255,255,255,0.05);padding:12px;border-radius:8px;position:relative;padding-left:28px}
-    .leagues ul li::before{content:"🏐";position:absolute;left:0;top:0;font-size:18px;line-height:1.2}
+
+    /* League List Styles */
+    .leagues ul,
+    .league-text ul {
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      list-style:none;
+      padding-left:0;
+    }
+    .leagues ul li,
+    .league-text ul li {
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      background: rgba(255,255,255,0.08);
+      padding: 16px 20px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      line-height: 1.5;
+      font-size: 16px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .leagues ul li:hover,
+    .league-text ul li:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(255,106,0,0.5);
+    }
+    .league-img {
+      width:32px;
+      height:32px;
+      flex-shrink:0;
+    }
+    .league-text li br,
+    .leagues li br {
+      display: block;
+      margin-bottom: 6px;
+    }
+
     .league-text{margin-bottom:12px}
     .league-columns{display:flex;gap:40px;flex-wrap:wrap}
     .league-columns div{flex:1;min-width:250px}
-    .league-text ul{padding-left:0}
-    .league-text ul li{margin-bottom:12px;list-style:none;position:relative;padding-left:28px}
-    .league-text ul li::before{content:"🏐";position:absolute;left:0;top:0;font-size:18px;line-height:1.2}
 
-    @media(max-width:800px){
-      nav{
-        display:none;
-      }
-      .hamburger{
-        display:flex;
-      }
+    /* Locations Section Enhancements with Pulsing Glow */
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 20px rgba(255,106,0,0.3); }
+      50% { box-shadow: 0 0 40px rgba(255,106,0,0.6); }
+      100% { box-shadow: 0 0 20px rgba(255,106,0,0.3); }
+    }
+
+    .locations {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .locations div {
+      flex: 1;
+      min-width: 250px;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      animation: pulseGlow 3s infinite;
+    }
+
+    .locations div::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(255,106,0,0.2), transparent 70%);
+      transform: rotate(45deg);
+      pointer-events: none;
+    }
+
+    .locations div:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(255,106,0,0.6);
+    }
+
+    .locations h3 {
+      margin-top: 0;
+      color: var(--accent);
+      font-size: 20px;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .locations p {
+      margin: 0 0 12px;
+      font-size: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .locations img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-top: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media(max-width:600px){
+      h1{font-size:28px}
       .hero{padding:48px 18px}
       .locations{flex-direction:column;gap:18px}
+      .locations div{padding:12px}
       .league-columns{flex-direction:column;gap:18px}
-      #league-info img{width:100%;max-width:150px;height:auto;}
-      body::before{background:rgba(0,0,0,0.55);}
-      body{background-attachment:scroll;background-position:top center;}
+
+      /* Make league images responsive */
+      #league-info img{
+        width:100%;
+        max-width:150px;
+        height:auto;
+      }
+
+      /* Adjust background for mobile */
+      body{
+        background-attachment:scroll;
+      }
+
+      .leagues ul li,
+      .league-text ul li {
+        flex-direction:row;
+        align-items:flex-start;
+      }
     }
   </style>
 </head>
@@ -164,12 +198,6 @@
         <div style="font-size:13px;color:rgba(255,255,255,0.7)">Seattle — Adult & Rec Leagues</div>
       </div>
     </div>
-    <input type="checkbox" id="menu-toggle" class="menu-toggle" style="display:none;">
-    <label for="menu-toggle" class="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
-    </label>
     <nav>
       <a href="#about">Who Are We?</a>
       <a href="#locations">Locations</a>
@@ -179,7 +207,7 @@
     </nav>
   </header>
 
-  <section class="hero card">
+  <section class="hero">
     <h1>Up North Volleyball</h1>
     <p class="lead">Dominate on the Courts, Connect with your Community</p>
     <div class="card">
@@ -201,9 +229,9 @@
       <div class="section-title"><h2>League Information</h2></div>
       <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px;flex-wrap:wrap">
         <img src="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/584033738_122262090086076327_998893460225462652_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s206x206_tt6&_nc_cat=102&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=50ad20&_nc_ohc=aboGLjtke18Q7kNvwGMcc2Z&_nc_oc=AdnMgHZdnxf4cBuzUnT8GGT6jv_3HG3e3eW-QAnRy10tgXn0Dm-bubCtk88rI4yG05g0bGNdBOxKZfcz6dxGcMkH&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=PvCwVHVXB0Olkd9kGi1lsA&oh=00_AfkbmOzqmE3PBLPcMbI2MjMqLt-fgsK4OKz36V8-wEKQqg&oe=693A336D" 
-             alt="League Image 1">
+             alt="League Image 1" style="width:150px; height:150px; object-fit:cover; border-radius:8px;">
         <img src="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/585583796_122262090050076327_2758532206424142451_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s206x206_tt6&_nc_cat=111&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=50ad20&_nc_ohc=uOqF2QhVyx8Q7kNvwFDHmlN&_nc_oc=AdlWubgykmN8m2qrEBMIgadyu7b60VO3A1BRw3LG64uVRRlDG5luMSUSiEp2u137KZpBtu9ESQ8XViv73EfquXGP&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=PvCwVHVXB0Olkd9kGi1lsA&oh=00_Afni7EctkhUSxVZWNq41oo0pJyTdH5MBgzN-df3bZAdOXw&oe=693A5C75" 
-             alt="League Image 2">
+             alt="League Image 2" style="width:150px; height:150px; object-fit:cover; border-radius:8px;">
       </div>
       <div class="pricing">
         <div>
@@ -223,6 +251,7 @@
       </div>
     </section>
 
+    <!-- Updated Locations Section -->
     <section id="locations" class="card" style="margin-top:18px">
       <div class="section-title"><h2>Locations</h2></div>
       <div class="locations">
@@ -230,13 +259,13 @@
           <h3>Billings Middle School</h3>
           <p>Address: 12351 8th Ave NE, Seattle, WA 98125</p>
           <img src="https://images.squarespace-cdn.com/content/v1/51b4c245e4b0c02e88c68f66/4e7eccc9-9c9c-457f-ae59-8d9f832d810c/Billings+Middle+School+%28MS+Top%29+%26+Logo+Guy+-+nontrans.png?format=750w" 
-               alt="Billings Middle School" 
-               class="billings">
+               alt="Billings Middle School" class="billings">
         </div>
         <div>
           <h3>Downtown Seattle YMCA</h3>
           <p>Address: 909 4th Ave, Seattle, WA 98104</p>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/YMCA_of_the_USA_2010_logo_blue-purple.svg/500px-YMCA_of_the_USA_2010_logo_blue-purple.svg.png" alt="Downtown Seattle YMCA">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/YMCA_of_the_USA_2010_logo_blue-purple.svg/500px-YMCA_of_the_USA_2010_logo_blue-purple.svg.png" 
+               alt="Downtown Seattle YMCA">
         </div>
       </div>
     </section>
@@ -247,18 +276,25 @@
         <div class="league-text">
           <h4>Billings Middle School</h4>
           <ul>
-            <li>Mondays: KOB Reverse 4's - 6:30 - 10:30<br>12 pairs (One guy & One girl)<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</li>
-            <li>Tuesdays: Reverse 4's - 6:30 - 10:30<br>6 teams<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</li>
-            <li>Wednesdays: Reverse 4's - 7:30 - 10:30<br>6 teams<br>Time Slots: 7:30 - 8:40, 8:40 - 9:50, 9:50 - 11:00</li>
-            <li>Thursdays: Reverse 4's - 6:30 - 10:30<br>6 teams<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</li>
+            <li><img src="https://us.123rf.com/450wm/laudiseno/laudiseno1708/laudiseno170800094/83244714-isolated-volleyball-ball-on-a-white-background-illustration.jpg" class="league-img" alt="volleyball">
+                Mondays: KOB Reverse 4's - 6:30 - 10:30<br>12 pairs (One guy & One girl)<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</li>
+            <li><img src="https://us.123rf.com/450wm/laudiseno/laudiseno1708/laudiseno170800094/83244714-isolated-volleyball-ball-on-a-white-background-illustration.jpg" class="league-img" alt="volleyball">
+                Tuesdays: Reverse 4's - 6:30 - 10:30<br>6 teams<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</li>
+            <li><img src="https://us.123rf.com/450wm/laudiseno/laudiseno1708/laudiseno170800094/83244714-isolated-volleyball-ball-on-a-white-background-illustration.jpg" class="league-img" alt="volleyball">
+                Wednesdays: Reverse 4's - 7:30 - 10:30<br>6 teams<br>Time Slots: 7:30 - 8:40, 8:40 - 9:50, 9:50 - 11:00</li>
+            <li><img src="https://us.123rf.com/450wm/laudiseno/laudiseno1708/laudiseno170800094/83244714-isolated-volleyball-ball-on-a-white-background-illustration.jpg" class="league-img" alt="volleyball">
+                Thursdays: Reverse 4's - 6:30 - 10:30<br>6 teams<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</li>
           </ul>
         </div>
         <div class="league-text">
           <h4>Downtown Seattle YMCA</h4>
           <ul>
-            <li>Mondays: Reverse 4's - 6:00 - 9:00<br>4 teams<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</li>
-            <li>Tuesdays: Reverse 4's - 6:00 - 9:00<br>4 teams<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</li>
-            <li>Thursday: Reverse 4's - 6:00 - 9:00<br>4 teams<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</li>
+            <li><img src="https://us.123rf.com/450wm/laudiseno/laudiseno1708/laudiseno170800094/83244714-isolated-volleyball-ball-on-a-white-background-illustration.jpg" class="league-img" alt="volleyball">
+                Mondays: Reverse 4's - 6:00 - 9:00<br>4 teams<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</li>
+            <li><img src="https://us.123rf.com/450wm/laudiseno/laudiseno1708/laudiseno170800094/83244714-isolated-volleyball-ball-on-a-white-background-illustration.jpg" class="league-img" alt="volleyball">
+                Tuesdays: Reverse 4's - 6:00 - 9:00<br>4 teams<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</li>
+            <li><img src="https://us.123rf.com/450wm/laudiseno/laudiseno1708/laudiseno170800094/83244714-isolated-volleyball-ball-on-a-white-background-illustration.jpg" class="league-img" alt="volleyball">
+                Thursday: Reverse 4's - 6:00 - 9:00<br>4 teams<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</li>
           </ul>
         </div>
       </div>
@@ -269,32 +305,17 @@
       <p>Questions or ready to register your team? Email us at <a href="mailto:Upnorthvolleyballwa@gmail.com" style="color:var(--accent)">Upnorthvolleyballwa@gmail.com</a></p>
       <p>Find us on Facebook: <a href="https://www.facebook.com/UpNorthVolleyball" target="_blank" style="color:var(--accent)">Up North Volleyball (Facebook)</a></p>
       <h4 style="margin-top:12px">Quick Message</h4>
-      <!-- Formspree form -->
-      <form action="https://formspree.io/f/mnqwyprl" method="POST">
-        <input type="text" name="name" placeholder="Your name" required>
-        <input type="email" name="_replyto" placeholder="Your email" required>
-        <textarea name="message" placeholder="Tell us about your team / question" rows="4" required></textarea>
+      <form action="https://formspree.io/f/xanrvqvg" method="POST">
+        <input type="text" name="name" placeholder="Your name" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:inherit">
+        <input type="email" name="email" placeholder="Your email" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:inherit">
+        <textarea name="message" placeholder="Tell us about your team / question" rows="4" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:inherit"></textarea>
         <button class="btn" type="submit">Send Message</button>
       </form>
     </section>
+
+    <footer>
+      &copy; 2025 Up North Volleyball — Seattle, WA
+    </footer>
   </main>
-
-  <footer>
-    <div>© Up North Volleyball — Seattle</div>
-  </footer>
-
-  <script>
-    // Fade-in scroll animation
-    const cards = document.querySelectorAll('.card');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, {threshold:0.1});
-    cards.forEach(card => observer.observe(card));
-  </script>
 </body>
 </html>
