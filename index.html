@@ -414,7 +414,35 @@
       transform: translateY(-3px);
       box-shadow: 0 4px 15px rgba(255,106,0,0.5);
     }
-    .league-img {
+    
+    /* Ongoing Leagues: make location headers 1 font size bigger */
+    #leagues .league-text > h4{
+      font-size: calc(1em + 1pt);
+    }
+
+/* Ongoing Leagues: make the top line match the title + slightly larger */
+    #leagues .league-topline{
+      display:block;
+      font-weight:800;
+      font-size: calc(1em + 1pt);
+      margin-bottom: 4px;
+      background: linear-gradient(90deg, #ff6a00, #ffd700, #ff6a00);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 3s linear infinite;
+    }
+
+    /* Ongoing Leagues: pulse glow around each event box */
+    #leagues .leagues ul li,
+    #leagues .league-text ul li{
+      border: 1px solid rgba(255,106,0,0.35);
+      position: relative;
+      overflow: hidden;
+      animation: pulseGlow 3s infinite;
+      box-shadow: 0 0 18px rgba(255,106,0,0.18);
+    }
+.league-img {
       width:32px;
       height:32px;
       flex-shrink:0;
@@ -824,14 +852,17 @@
 <h3 class="orange">Downtown Seattle YMCA</h3>
 <p><strong>$400</strong> per team for a 5-week league</p>
 <p>Each time slot is <strong>1.5 hours</strong> per night, every team will play every week including finals.</p>
+<p>Each team plays <strong>4 Sets</strong> a night to <strong>21</strong> with a cap at <strong>23</strong></p>
 <p>Finals are bracketed into <strong>Gold</strong> and <strong>Silver</strong> to offer the most competitive games for the season finales.</p>
 </div>
 <div>
 <h3 class="orange">Billings Middle School (North Seattle)</h3>
 <p><strong>$500</strong> per team for a 7-week Reverse 4's league</p>
 <p>Includes a <strong>1 hour 20 minute</strong> time slot every night, every team plays weekly including finals.</p>
+<p>Each team plays <strong>4 Sets</strong> a night to <strong>21</strong> with a cap at <strong>23</strong></p>
 <p><strong>$570</strong> per team for a 7-week Coed 6's league</p>
 <p>Includes a <strong>1 hour 20 minute</strong> time slot every night, every team plays weekly including finals.</p>
+<p>Each team plays <strong>4 Sets</strong> a night to <strong>21</strong> with a cap at <strong>23</strong></p>
 <p>Finals are bracketed into <strong>Gold</strong>, <strong>Silver</strong>, and <strong>Bronze</strong> to offer the most competitive season finales.</p>
 </div>
 </div>
@@ -1146,6 +1177,35 @@
       });
     })();
   </script>
+
+  <script>
+    // Ongoing Leagues: style the first line (e.g., "Mondays: ...") consistently
+    (function(){
+      const links = document.querySelectorAll('#leagues .league-bullet-link');
+      links.forEach((a) => {
+        // If we've already wrapped, skip
+        if (a.querySelector('.league-topline')) return;
+
+        const br = a.querySelector('br');
+        if (!br) return;
+
+        // Collect nodes before the first <br>
+        const nodes = [];
+        let n = a.firstChild;
+        while (n && n !== br) {
+          nodes.push(n);
+          n = n.nextSibling;
+        }
+        if (!nodes.length) return;
+
+        const span = document.createElement('span');
+        span.className = 'league-topline';
+        nodes.forEach(node => span.appendChild(node)); // moves nodes into span
+        a.insertBefore(span, br);
+      });
+    })();
+  </script>
+
 </body>
 </html>
 
