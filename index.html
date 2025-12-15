@@ -297,7 +297,7 @@
       background: transparent;
     }
 
-    /* Location Boxes + Pulse Glow */
+    /* Location Boxes */
     .location-box{
       background: rgba(0,0,0,0.55);
       border: 1px solid rgba(255,106,0,0.35);
@@ -305,7 +305,6 @@
       padding: 16px 18px;
       position: relative;
       overflow: hidden;
-      animation: pulseGlow 3s infinite;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .location-box:hover{
@@ -402,7 +401,7 @@
       display:flex;
       align-items:flex-start;
       gap:12px;
-      background: rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.55);
       padding: 16px 20px;
       border-radius: 12px;
       margin-bottom: 16px;
@@ -843,7 +842,7 @@
 <p>Payments are made via Venmo to <strong>@upnorth-vball</strong>.</p>
 </section>
 <!-- Locations Section -->
-<section class="card" id="locations" style="margin-top:18px">
+<section class="card glow-card" id="locations" style="margin-top:18px">
 <div class="section-title"><h2>Locations</h2></div><div class="section-subtitle subtle">Tap an image for directions</div>
 <div class="locations">
 <div class="location-box">
@@ -923,7 +922,7 @@
 <input name="email" placeholder="Your email" required="" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:inherit" type="email"/>
 <textarea name="message" placeholder="Tell us about your team / question" rows="4" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:inherit"></textarea>
 <div aria-live="polite" class="form-status" id="formStatus"></div>
-<button class="btn" id="contactSubmit" type="submit">Send Message</button>
+<button class="btn btn-msg" id="contactSubmit" type="submit">Send Message</button>
 </form>
 <p id="formStatus" style="margin-top:10px;display:none;"></p>
 </section>
