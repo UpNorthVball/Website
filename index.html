@@ -317,7 +317,52 @@
       text-shadow: 0 0 10px rgba(255,106,0,0.55);
     }
 
-    .contact form{display:grid;gap:10px}
+    /* Soft pulse glow + orange borders for inner boxes (Locations + Ongoing Leagues) */
+    @keyframes pulseGlowSoft {
+      0%   { box-shadow: 0 0 10px rgba(255,106,0,0.18); }
+      50%  { box-shadow: 0 0 18px rgba(255,106,0,0.35); }
+      100% { box-shadow: 0 0 10px rgba(255,106,0,0.18); }
+    }
+
+    /* Locations boxes */
+    #locations .location-box{
+      border-color: rgba(255,106,0,0.80);
+      animation: pulseGlowSoft 3.2s ease-in-out infinite;
+      box-shadow: 0 0 10px rgba(255,106,0,0.18);
+    }
+    #locations .location-box:hover{
+      border-color: rgba(255,106,0,0.95);
+      box-shadow: 0 10px 26px rgba(255,106,0,0.38);
+    }
+
+    /* Ongoing leagues boxes */
+    #leagues .league-text{
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,106,0,0.80);
+      border-radius: 14px;
+      padding: 16px 18px;
+      position: relative;
+      overflow: hidden;
+      animation: pulseGlowSoft 3.2s ease-in-out infinite;
+      box-shadow: 0 0 10px rgba(255,106,0,0.18);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    #leagues .league-text:hover{
+      transform: translateY(-3px);
+      border-color: rgba(255,106,0,0.95);
+      box-shadow: 0 10px 26px rgba(255,106,0,0.38);
+    }
+
+
+    
+    /* Remove orange border for specific Ongoing Leagues boxes (keep pulse glow) */
+    #leagues .league-text.no-border{
+      border-color: transparent !important;
+    }
+    #leagues .league-text.no-border:hover{
+      border-color: transparent !important;
+    }
+.contact form{display:grid;gap:10px}
     .btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:#111;font-weight:700;text-decoration:none}
     /* Shiny grey button variant for the "Send a message" CTA */
     .btn.btn-msg{
@@ -567,6 +612,7 @@
       .hero{padding:48px 18px}
       .locations{flex-direction:column;gap:18px}
       .locations .location-box{padding:12px}
+      #leagues .league-text{padding:12px}
       .league-columns{flex-direction:column;gap:18px}
 
       /* League thumbnails: 2-up + smaller on mobile */
@@ -895,7 +941,7 @@
 <div class="section-title"><h2>Ongoing Leagues</h2></div>
 <div class="section-subtitle">Tap an event for more information</div>
 <div class="league-columns">
-<div class="league-text">
+<div class="league-text no-border">
 <h4>Billings Middle School</h4>
 <ul>
 <li>
@@ -916,7 +962,7 @@
 </li>
 </ul>
 </div>
-<div class="league-text">
+<div class="league-text no-border">
 <h4>Downtown Seattle YMCA</h4>
 <ul>
 <li>
