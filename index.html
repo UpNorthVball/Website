@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head>
+<head><link href="https://upnorthvball.github.io/Website/" rel="canonical"/>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Up North Volleyball</title>
@@ -9,14 +9,14 @@
 <meta content="Up North Volleyball" property="og:title"/>
 <meta content="Seattle volleyball leagues, open gyms, and events." property="og:description"/>
 <meta content="website" property="og:type"/>
-<meta content="https://YOUR-DOMAIN-OR-GITHUB-PAGES-URL-HERE/" property="og:url"/>
-<meta content="https://raw.githubusercontent.com/UpNorthVball/Website/main/upnorth.jpg" property="og:image"/>
+<meta content="https://upnorthvball.github.io/Website/" property="og:url"/>
+<meta content="https://upnorthvball.github.io/Website/upnorth.jpg" property="og:image"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Up North Volleyball" name="twitter:title"/>
 <meta content="Seattle volleyball leagues, open gyms, and events." name="twitter:description"/>
-<meta content="https://raw.githubusercontent.com/UpNorthVball/Website/main/upnorth.jpg" name="twitter:image"/>
+<meta content="https://upnorthvball.github.io/Website/upnorth.jpg" name="twitter:image"/>
 <style>
     :root{--accent:#ff6a00;--dark:#111;--muted:rgba(255,255,255,0.85);--btnText:rgba(220,220,220,0.92)}
     *{box-sizing:border-box}
@@ -360,6 +360,14 @@
       border-color: transparent !important;
     }
     #leagues .league-text.no-border:hover{
+      border-color: transparent !important;
+    }
+
+    /* Match Locations box borders to Ongoing Leagues no-border style (keep pulse glow) */
+    #locations .location-box.no-border{
+      border-color: transparent !important;
+    }
+    #locations .location-box.no-border:hover{
       border-color: transparent !important;
     }
 .contact form{display:grid;gap:10px}
@@ -833,7 +841,7 @@
 }
 
 </style>
-</head>
+<meta content="https://upnorthvball.github.io/Website/upnorth.jpg" property="og:image:secure_url"/></head>
 <body id="top">
 <header class="site-header">
 <button aria-controls="menuPanel" aria-expanded="false" aria-label="Open menu" class="menu-btn" id="menuBtn" type="button">
@@ -922,17 +930,13 @@
 <section class="card glow-card" id="locations" style="margin-top:18px">
 <div class="section-title"><h2>Locations</h2></div><div class="section-subtitle subtle">Tap an image for directions</div>
 <div class="locations">
-<div class="location-box">
+<div class="location-box no-border">
 <h3>Billings Middle School</h3>
 <div class="location-address subtle">12351 8th Ave NE, Seattle, WA 98125</div><a aria-label="Get directions to Billings Middle School" class="location-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=12351+8th+Ave+NE%2C+Seattle%2C+WA+98125" rel="noopener noreferrer" target="_blank"><div class="location-image-wrap"><img alt="Billings Middle School" class="billings" src="https://images.squarespace-cdn.com/content/v1/51b4c245e4b0c02e88c68f66/a30eafa8-878e-4450-8851-6bbbc5516f0a/Billings+Logo.PNG?format=500w"/></div></a>
-
-
 </div>
-<div class="location-box">
+<div class="location-box no-border">
 <h3>Downtown Seattle YMCA</h3>
 <div class="location-address subtle">909 4th Ave, Seattle, WA 98104</div><a aria-label="Get directions to Downtown Seattle YMCA" class="location-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=909+4th+Ave%2C+Seattle%2C+WA+98104" rel="noopener noreferrer" target="_blank"><div class="location-image-wrap"><img alt="Downtown Seattle YMCA" src="https://logos-world.net/wp-content/uploads/2021/11/YMCA-Logo-700x394.png" style="width:100%; max-width:300px; height:auto;"/></div></a>
-
-
 </div>
 </div>
 </section>
@@ -1223,8 +1227,7 @@
       });
     })();
   </script>
-
-  <script>
+<script>
     // Ongoing Leagues: style the first line (e.g., "Mondays: ...") consistently
     (function(){
       const links = document.querySelectorAll('#leagues .league-bullet-link');
@@ -1251,8 +1254,5 @@
       });
     })();
   </script>
-
 </body>
 </html>
-
-
