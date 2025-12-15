@@ -1,10 +1,23 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta property="og:image" content="https://github.com/UpNorthVball/Website/blob/main/upnorth.jpg">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Up North Volleyball</title>
+
+  <!-- Social preview (Open Graph / Twitter). IMPORTANT: og:image must be an absolute, publicly reachable URL. -->
+  <meta property="og:title" content="Up North Volleyball" />
+  <meta property="og:description" content="Seattle volleyball leagues, open gyms, and events." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://YOUR-DOMAIN-OR-GITHUB-PAGES-URL-HERE/" />
+  <meta property="og:image" content="https://YOUR-DOMAIN-OR-GITHUB-PAGES-URL-HERE/og-preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Up North Volleyball" />
+  <meta name="twitter:description" content="Seattle volleyball leagues, open gyms, and events." />
+  <meta name="twitter:image" content="https://YOUR-DOMAIN-OR-GITHUB-PAGES-URL-HERE/og-preview.jpg" />
+
   <style>
     :root{--accent:#ff6a00;--dark:#111;--muted:rgba(255,255,255,0.85);--btnText:rgba(220,220,220,0.92)}
     *{box-sizing:border-box}
@@ -261,7 +274,13 @@
       text-align:center;
       font-size:13px;
       letter-spacing:0.2px;
-      color: rgba(230,230,230,0.80);
+      font-weight:800;
+      background: linear-gradient(90deg, #ff6a00, #ffd700, #ff6a00);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 3s linear infinite;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
     }
 .orange{color:inherit}
     footer{padding:18px;text-align:center;color:rgba(255,255,255,0.7)}
@@ -767,14 +786,14 @@
     <!-- Ongoing Leagues Section -->
     <section id="leagues" class="card glow-card" style="margin-top:18px">
       <div class="section-title"><h2>Ongoing Leagues</h2></div>
-      <div class="section-subtitle">tap an event for more information</div>
+      <div class="section-subtitle">Tap an event for more information</div>
       <div class="league-columns">
         <div class="league-text">
           <h4>Billings Middle School</h4>
           <ul>
             <li>
               <img src="molten-volleyball.png" class="league-img" alt="volleyball">
-                <a class="league-bullet-link" href="https://fb.me/1XtDgbElgKWnn9e" target="_blank" rel="noopener">Mondays: Individual Reverse 4's - 6:30 - 10:30<br>24 players (12 guys & 12 girls)<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</a>
+                <a class="league-bullet-link" href="https://fb.me/1XtDgbElgKWnn9e" target="_blank" rel="noopener">Mondays: Individual Sign Up Reverse 4's - 6:30 - 10:30<br>24 players (12 guys & 12 girls)<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</a>
             </li>
             <li>
               <img src="molten-volleyball.png" class="league-img" alt="volleyball">
@@ -803,7 +822,7 @@
             </li>
             <li>
               <img src="mikasa-volleyball.png" class="league-img" alt="volleyball">
-                <a class="league-bullet-link" href="https://www.facebook.com/share/17QdCp1QLv/" target="_blank" rel="noopener">Thursday: KOB Reverse 4's - 6:00 - 9:00<br>8 pairs<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</a>
+                <a class="league-bullet-link" href="https://www.facebook.com/share/17QdCp1QLv/" target="_blank" rel="noopener">Thursday: KOB Reverse 4's - 6:00 - 9:00<br>8 pairs (8 Guys & 8 Girls)<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</a>
             </li>
           </ul>
         </div>
