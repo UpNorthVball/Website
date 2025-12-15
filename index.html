@@ -260,7 +260,13 @@
       text-align:center;
       font-size:13px;
       letter-spacing:0.2px;
-      color: rgba(230,230,230,0.80);
+      font-weight:800;
+      background: linear-gradient(90deg, #ff6a00, #ffd700, #ff6a00);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 3s linear infinite;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
     }
 .orange{color:inherit}
     footer{padding:18px;text-align:center;color:rgba(255,255,255,0.7)}
@@ -766,7 +772,7 @@
     <!-- Ongoing Leagues Section -->
     <section id="leagues" class="card glow-card" style="margin-top:18px">
       <div class="section-title"><h2>Ongoing Leagues</h2></div>
-      <div class="section-subtitle">tap an event for more information</div>
+      <div class="section-subtitle">Tap an event for more information</div>
       <div class="league-columns">
         <div class="league-text">
           <h4>Billings Middle School</h4>
