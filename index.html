@@ -241,7 +241,7 @@
       width: min(100%, 560px);
     }
 
-    p.lead{margin:0 0 18px;color:rgba(255,255,255,0.9)}
+    p.lead{margin:0 0 18px;color:var(--btnText);font-weight:700}
     .card{background:rgba(0,0,0,0.5);padding:18px;border-radius:12px;margin-top:12px}
 
     /* Pulse glow helper class (used for Send a message, Contact Us, Ongoing Leagues) */
@@ -681,6 +681,12 @@
       }
     }
 
+  
+    /* Semi-bold body text in Ongoing Leagues + Locations */
+    #leagues, #locations{
+      font-weight:600;
+    }
+
   </style>
 </head>
 <body id="top">
@@ -860,7 +866,7 @@
     <!-- Contact Section -->
     <section id="contact" class="card contact glow-card" style="margin-top:18px">
       <div class="section-title"><h2>Contact Us</h2></div>
-      <p>Questions or ready to register your team? Email us at <a href="mailto:Upnorthvolleyballwa@gmail.com" style="color:var(--accent)">Upnorthvolleyballwa@gmail.com</a></p>
+      <p>Email us at <a href="mailto:Upnorthvolleyballwa@gmail.com" style="color:var(--accent)">Upnorthvolleyballwa@gmail.com</a></p>
       <p>Find us on Facebook: <a href="https://www.facebook.com/UpNorthVolleyball" target="_blank" style="color:var(--accent)">Up North Volleyball (Facebook)</a></p>
       <h4 style="margin-top:12px">Quick Message</h4>
       <form data-antispam="1" id="contactForm" action="https://formspree.io/f/xanrvqvg" method="POST">
