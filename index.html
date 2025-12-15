@@ -1,0 +1,950 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Up North Volleyball</title>
+  <style>
+    :root{--accent:#ff6a00;--dark:#111;--muted:rgba(255,255,255,0.85)}
+    *{box-sizing:border-box}
+    html, body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color:var(--muted);
+      background: transparent;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      min-height:100vh;
+      min-height:100svh;
+      position:relative;
+    }
+
+    /* Background layer for better mobile scaling (avoids background-attachment issues) */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)), url('https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/407618788_122129208362076327_7937567063686365697_n.jpg?_nc_cat=102&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=rnueto2g95IQ7kNvwGTKr-B&_nc_oc=AdnZy8aC4Q_ydkoH7TiHap8eaakixWVg1snfdcI8KCrd98z-VQhGkZoMzwDCA44O99g9B34KNzmuo2i9hB8s3mLf&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=DotYx6BsOeSOq3C18mlQaA&oh=00_Afnn71f2sYKu0BJx-MDXd5ftv-h64qFEq85qt7FOmYufNg&oe=6942D70A') center/cover no-repeat;
+      z-index:-1;
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    .site-header{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      padding:18px 28px;
+      background: transparent; /* fully transparent */
+      backdrop-filter: none;   /* remove blur */
+      -webkit-backdrop-filter: none;
+      position:sticky;
+      top:0;
+      z-index:1100;
+    }
+    /* Hamburger menu */
+    .menu-btn{
+      width:44px;
+      height:44px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.16);
+      background:rgba(0,0,0,0.28);
+      color:var(--muted);
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .menu-btn:hover{
+      border-color: rgba(255,106,0,0.55);
+      box-shadow: 0 0 18px rgba(255,106,0,0.35);
+      transform: translateY(-1px);
+    }
+    .hamburger{
+      position:relative;
+      width:20px;
+      height:2px;
+      background:rgba(255,255,255,0.92);
+      border-radius:999px;
+      display:block;
+    }
+    .hamburger::before,
+    .hamburger::after{
+      content:"";
+      position:absolute;
+      left:0;
+      width:20px;
+      height:2px;
+      background:rgba(255,255,255,0.92);
+      border-radius:999px;
+      transition: transform 0.2s ease, top 0.2s ease, opacity 0.2s ease;
+    }
+    .hamburger::before{ top:-6px; }
+    .hamburger::after{ top:6px; }
+
+    .menu-panel{
+      z-index:1120;
+      position:absolute;
+      right:18px;
+      top:calc(100% + 10px);
+      width:min(92vw, 320px);
+      background:rgba(0,0,0,0.78);
+      border:1px solid rgba(255,106,0,0.28);
+      border-radius:16px;
+      padding:10px;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.55);
+      backdrop-filter: blur(8px);
+      display:none;
+      transform: translateY(-6px);
+      opacity:0;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .menu-panel a{
+      display:block;
+      padding:12px 12px;
+      border-radius:12px;
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:700;
+      letter-spacing:0.2px;
+      text-align:center;
+    }
+    .menu-panel a:hover{
+      background: rgba(255,106,0,0.14);
+      box-shadow: inset 0 0 0 1px rgba(255,106,0,0.25);
+    }
+    .menu-backdrop{
+      position:fixed;
+      inset:0;
+      background:transparent;
+      display:none;
+      z-index:1090;
+    }
+
+    /* Open state */
+    .site-header.menu-open .menu-panel{
+      display:block;
+      transform: translateY(0);
+      opacity:1;
+    }
+    .site-header.menu-open .menu-backdrop{
+      display:block;
+    }
+    .site-header.menu-open .hamburger{
+      background:transparent;
+    }
+    .site-header.menu-open .hamburger::before{
+      top:0;
+      transform: rotate(45deg);
+    }
+    .site-header.menu-open .hamburger::after{
+      top:0;
+      transform: rotate(-45deg);
+    }
+
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{
+      width:56px;height:56px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;
+      background:url('https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/407618788_122129208362076327_7937567063686365697_n.jpg?_nc_cat=102') center/cover no-repeat;
+    }
+
+    .hero{padding:96px 28px 48px;max-width:1100px;margin:0 auto;text-align:center}
+
+    h1{
+      font-size:64px;
+      font-weight:900;
+      background: linear-gradient(90deg, #ff6a00, #ffd700, #ff6a00);
+      background-size: 200% auto;
+      color: #fff;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 3s linear infinite;
+      margin:0 0 12px;
+    }
+    @keyframes shine {
+      0%{background-position:0%;}
+      100%{background-position:200%;}
+    }
+
+    /* Match section headers to the main "Up North Volleyball" shiny gradient style */
+    main h2,
+    main h3,
+    main h4{
+      font-weight:900;
+      background: linear-gradient(90deg, #ff6a00, #ffd700, #ff6a00);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 3s linear infinite;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      margin: 0 0 12px;
+    }
+
+    /* Center all text + images inside sections */
+    main .card{ text-align:center; }
+    main .card img{ display:block; margin-left:auto; margin-right:auto; }
+
+    /* Locations: center layout + content */
+    .locations{ justify-content:center; }
+    .locations .location-box{
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    .locations .location-box p{ margin: 6px 0; }
+
+    /* League/pricing layouts: center everything */
+    .pricing{ display:flex; gap:24px; flex-wrap:wrap; justify-content:center; }
+    .pricing > div{ text-align:center; }
+
+    .league-columns{ justify-content:center; }
+    .league-text{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    .leagues ul,
+    .league-text ul{
+      align-items:center;
+    }
+    .leagues ul li,
+    .league-text ul li{
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+    .league-img{ margin: 0 auto; }
+
+    /* Contact form: keep inputs centered and readable */
+    .contact form{ justify-items:center; }
+    .contact form input,
+    .contact form textarea{
+      width: min(100%, 560px);
+    }
+
+    p.lead{margin:0 0 18px;color:rgba(255,255,255,0.9)}
+    .card{background:rgba(0,0,0,0.5);padding:18px;border-radius:12px;margin-top:12px}
+
+    /* Pulse glow helper class (used for Send a message, Contact Us, Ongoing Leagues) */
+    .card.glow-card{
+      background: rgba(0,0,0,0.60);
+      border: 1px solid rgba(255,106,0,0.35);
+      position: relative;
+      overflow: hidden;
+      animation: pulseGlow 3s infinite;
+      box-shadow: 0 0 20px rgba(255,106,0,0.20);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .card.glow-card:hover{
+      transform: translateY(-3px);
+      border-color: rgba(255,106,0,0.55);
+      box-shadow: 0 8px 28px rgba(255,106,0,0.55);
+    }
+
+    main{max-width:1100px;margin:24px auto;padding:0 18px}
+
+    /* ✅ Center section titles */
+    .section-title{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:12px;text-align:center;width:100%;}
+    .section-title h2{margin:0;}
+
+    .orange{color:inherit}
+    footer{padding:18px;text-align:center;color:rgba(255,255,255,0.7)}
+    .locations{display:flex;gap:24px;flex-wrap:wrap}
+    .locations .location-box{flex:1;min-width:250px}
+    .locations img{
+      width:150px;
+      height:150px;
+      object-fit:cover;
+      border-radius:8px;
+      margin-top:6px;
+    }
+    .locations img.billings{
+      object-fit:contain;
+      background: transparent;
+    }
+
+    /* Location Boxes + Pulse Glow */
+    .location-box{
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,106,0,0.35);
+      border-radius: 14px;
+      padding: 16px 18px;
+      position: relative;
+      overflow: hidden;
+      animation: pulseGlow 3s infinite;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .location-box:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255,106,0,0.55);
+    }
+    .location-box h3{
+      margin-top:0;
+      color: var(--accent);
+      text-shadow: 0 0 10px rgba(255,106,0,0.55);
+    }
+
+    .contact form{display:grid;gap:10px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:#111;font-weight:700;text-decoration:none}
+    .pricing div,.leagues div{margin-bottom:18px}
+
+    /* League List Styles */
+    
+    /* Clickable league bullet links */
+    .league-bullet-link{
+      display:block;
+      width:100%;
+      color: inherit;
+      text-decoration: none;
+    }
+    .league-bullet-link:hover{
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .league-bullet-link:focus-visible{
+      outline: 2px solid rgba(255,106,0,0.75);
+      outline-offset: 4px;
+      border-radius: 10px;
+    }
+    .league-text ul li{ cursor: pointer; }
+
+.leagues ul,
+    .league-text ul {
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      list-style:none;
+      padding-left:0;
+    }
+    .leagues ul li,
+    .league-text ul li {
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      background: rgba(255,255,255,0.08);
+      padding: 16px 20px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      line-height: 1.5;
+      font-size: 16px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .leagues ul li:hover,
+    .league-text ul li:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(255,106,0,0.5);
+    }
+    .league-img {
+      width:32px;
+      height:32px;
+      flex-shrink:0;
+    }
+    .league-text li br,
+    .leagues li br {
+      display: block;
+      margin-bottom: 6px;
+    }
+    .league-text{margin-bottom:12px}
+    .league-columns{display:flex;gap:40px;flex-wrap:wrap}
+    .league-columns div{flex:1;min-width:250px}
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 20px rgba(255,106,0,0.3); }
+      50% { box-shadow: 0 0 40px rgba(255,106,0,0.6); }
+      100% { box-shadow: 0 0 20px rgba(255,106,0,0.3); }
+    }
+
+    /* Glow for Who Are We and League Info */
+    #about, #league-info {
+      background: rgba(0,0,0,0.6);
+      border-radius: 12px;
+      padding: 18px;
+      position: relative;
+      animation: pulseGlow 3s infinite;
+    }
+
+    /* League Information thumbnails (clear + responsive) */
+    .league-tip{
+      margin: 6px 0 12px;
+      color: rgba(255,255,255,0.78);
+      font-size: 14px;
+    }
+    
+#league-info .league-media{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap:14px;
+      align-items:start;
+      justify-items:center;
+      margin-bottom:12px;
+    }
+    #league-info .league-thumb{
+      appearance:none;
+      border:0;
+      padding:0;
+      background:transparent;
+      cursor:pointer;
+      border-radius:14px;
+      overflow:hidden;
+      width:100%;
+      max-width:260px;
+      box-shadow: 0 0 16px rgba(255,106,0,0.18);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    #league-info .league-thumb:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 0 28px rgba(255,106,0,0.45);
+    }
+    #league-info .league-thumb img{
+      display:block;
+      width:100%;
+      height:auto;
+      border-radius:14px;
+      image-rendering:auto;
+      transform: translateZ(0);
+    }
+
+    /* Fit YMCA logo fully (if you use it in League Info later) */
+    #league-info img.ymca {
+      object-fit: contain;
+      background:#111;
+    }
+
+    /* Lightbox (tap an image to view full size) */
+    body.no-scroll{ overflow:hidden; }
+
+    .lightbox{
+      position:fixed;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background: rgba(0,0,0,0.86);
+      z-index:2000;
+    }
+    .lightbox.open{ display:flex; }
+    .lightbox img{
+      max-width: min(94vw, 1100px);
+      max-height: 86vh;
+      width:auto;
+      height:auto;
+      border-radius:16px;
+      box-shadow: 0 18px 70px rgba(0,0,0,0.6);
+    }
+    .lightbox .lightbox-close{
+      position:absolute;
+      top:16px;
+      right:16px;
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.16);
+      background: rgba(0,0,0,0.35);
+      color: rgba(255,255,255,0.95);
+      font-size:24px;
+      line-height:1;
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      box-shadow: 0 0 18px rgba(255,106,0,0.18);
+    }
+    .lightbox .lightbox-close:hover{
+      box-shadow: 0 0 26px rgba(255,106,0,0.45);
+      border-color: rgba(255,106,0,0.45);
+    }
+
+    @media(max-width:600px){
+      h1{font-size:36px}
+      .hero{padding:48px 18px}
+      .locations{flex-direction:column;gap:18px}
+      .locations .location-box{padding:12px}
+      .league-columns{flex-direction:column;gap:18px}
+
+      /* League thumbnails: 2-up + smaller on mobile */
+      #league-info .league-media{grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px}
+      #league-info .league-thumb{max-width:none}
+      #league-info .league-thumb img{width:100%}
+
+      .leagues ul li,
+      .league-text ul li {
+        flex-direction:row;
+        align-items:flex-start;
+      }
+    }
+
+    @media(max-width:380px){
+      /* On very small screens, stack league images */
+      #league-info .league-media{grid-template-columns:1fr}
+    }
+
+    /* Who Are We video embed */
+    .video-wrap{
+      position:relative;
+      width:92%;
+      max-width:820px;
+      margin: 10px auto 18px;
+      border-radius:16px;
+      overflow:hidden;
+      border: 1px solid rgba(255,106,0,0.28);
+      background: rgba(0,0,0,0.35);
+      box-shadow: 0 0 24px rgba(255,106,0,0.22);
+    }
+    /* Keep 16:9 ratio (fallback for older browsers) */
+    .video-wrap::before{
+      content:"";
+      display:block;
+      padding-top:56.25%;
+    }
+    .video-wrap iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+    
+    .video-wrap video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+      background:#000;
+    }
+.video-caption{
+      margin:-8px 0 14px;
+      text-align:center;
+      color: rgba(255,255,255,0.80);
+      font-size: 14px;
+    }
+    /* Make the video a bit smaller on mobile so it doesn't dominate the screen */
+    @media (max-width: 600px){
+      .video-wrap{ width:92%; max-width:420px; margin: 8px auto 14px; border-radius:14px; }
+    }
+    @media (max-width: 380px){
+      .video-wrap{ width:94%; max-width:360px; }
+    }
+
+  
+    /* Anti-spam helpers */
+    .hp-field{
+      position:absolute !important;
+      left:-9999px !important;
+      width:1px !important;
+      height:1px !important;
+      overflow:hidden !important;
+    }
+.form-status{
+      margin-top:10px;
+      font-size:14px;
+      color: rgba(255,255,255,0.85);
+      text-align:center;
+    }
+    .form-status.error{ color: rgba(255,160,160,0.95); }
+    .form-status.ok{ color: rgba(170,255,200,0.95); }
+
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    
+
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menuPanel">
+      <span class="hamburger" aria-hidden="true"></span>
+    </button>
+
+    <div class="menu-panel" id="menuPanel" role="menu" aria-label="Site navigation">
+      <a role="menuitem" href="#about">Who Are We?</a>
+      <a role="menuitem" href="#locations">Locations</a>
+      <a role="menuitem" href="#league-info">League Information</a>
+      <a role="menuitem" href="#leagues">Ongoing Leagues</a>
+      <a role="menuitem" href="#contact">Contact</a>
+    </div>
+
+    <div class="menu-backdrop" id="menuBackdrop" aria-hidden="true"></div>
+  </header>
+
+  <section class="hero">
+    <h1>Up North Volleyball</h1>
+    <p class="lead">Dominate on the Courts. Connect with your Community.</p>
+    <div class="card glow-card">
+      <strong>Question about leagues, pop-up events, level of play, locations, or prices?</strong>
+      <div style="margin-top:8px"><a class="btn" href="#contact">Send a message</a></div>
+    </div>
+  </section>
+
+  <main>
+    <section id="about" class="card">
+      <div class="section-title"><h2>Who Are We?</h2></div>
+      <div class="video-wrap" aria-label="Up North Volleyball intro video">
+        <video controls playsinline webkit-playsinline preload="metadata" title="Up North Volleyball Intro Video">
+        <source src="https://drive.google.com/uc?export=download&id=16wbdynUmmz-hAxVoHB_7Hu-FDmK4eIiZ" type="video/mp4" />
+        Your browser can’t play this video. <a href="https://drive.google.com/file/d/16wbdynUmmz-hAxVoHB_7Hu-FDmK4eIiZ/view?usp=sharing" target="_blank" rel="noopener" style="color:var(--accent)">Open it here</a>.
+      </video>
+      </div>
+      <div class="video-caption">If fullscreen isn’t available inside the page, <a href="https://drive.google.com/file/d/16wbdynUmmz-hAxVoHB_7Hu-FDmK4eIiZ/view?usp=sharing" target="_blank" rel="noopener" style="color:var(--accent)">open the video in a new tab</a>.</div>
+      <p>Up North Volleyball is a community-centered volleyball organization based in Seattle, Washington. Our mission is to offer engaging and competitive volleyball experiences while fostering meaningful connections. Recognizing that Seattle is a transient city, we are committed to creating an inclusive and welcoming environment where players can build community and friendships through the sport they love.</p>
+      <p>The league levels we primarily host are advertised as BB/BB+ as well as some BB- leagues that act as general pipelines to the more competitive leagues.</p>
+      <p style="margin-top:8px"><strong>About the Founder:</strong> <a href="https://www.facebook.com/dane.erosa/" target="_blank" rel="noopener" style="color:var(--accent)">Dane Erosa</a> is a local Seattleite and volleyball player who founded Up North Volleyball to create competitive yet inclusive leagues for the community.</p>
+
+      <div style="text-align:center;">
+        <img
+          src="https://scontent-sea1-1.xx.fbcdn.net/v/t39.30808-6/462767079_18342458059130627_83010730814849764_n.jpg?stp=dst-jpegr_tt6&_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=CumQZnbiLZkQ7kNvwH2Nei8&_nc_oc=AdkWPN0apMaQDgW4owGcDaPfgEp1EBJx4xWTh7ffQwM981jWd7-7m7NaGHyyHuCmYccGSmxULhruprtuLTPMjJhA&_nc_zt=23&se=-1&_nc_ht=scontent-sea1-1.xx&_nc_gid=g1Rav_l6suZMeJemp1pzEg&oh=00_Aflf3yCzgkSnMowXL8X-BhhLEl1AFXvR6ausXdmiSfFydQ&oe=6943AE5B"
+          alt="Up North Volleyball"
+          style="width:40%; height:auto;">
+      </div>
+
+      <p style="margin-top:8px">Follow us on <a href="https://www.facebook.com/UpNorthVolleyball" target="_blank" style="color:var(--accent)">Facebook</a> for announcements, or connect with Dane on <em>LinkedIn</em> (link available on request).</p>
+    </section>
+
+    <section id="league-info" class="card" style="margin-top:18px">
+      <div class="section-title"><h2>League Information</h2></div>
+<div class="league-media" aria-label="League images">
+        <button class="league-thumb" type="button" data-full="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/580565164_122261087888076327_3662231164972742991_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=833d8c&_nc_ohc=I4UkyJnkPqUQ7kNvwEwU_cB&_nc_oc=Adn28_R814zSxTKaETFhisEsxI8NJLLyQosKFo35cO_TwFGnfAYc0uOYdOAGpzYVs2_SgBdIxadNTkXxsNDTodFj&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=FMv9xV9YsEEeIu7dfSXDEQ&oh=00_AflpjFZeYj-y7WQWryKzO6VswJ2McLF7Vr8Izu7MOgLXxw&oe=6943AC57" aria-label="Open League Image 1">
+          <img src="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/580565164_122261087888076327_3662231164972742991_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=833d8c&_nc_ohc=I4UkyJnkPqUQ7kNvwEwU_cB&_nc_oc=Adn28_R814zSxTKaETFhisEsxI8NJLLyQosKFo35cO_TwFGnfAYc0uOYdOAGpzYVs2_SgBdIxadNTkXxsNDTodFj&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=FMv9xV9YsEEeIu7dfSXDEQ&oh=00_AflpjFZeYj-y7WQWryKzO6VswJ2McLF7Vr8Izu7MOgLXxw&oe=6943AC57" alt="League Image 1" loading="lazy" decoding="async">
+        </button>
+
+        <button class="league-thumb" type="button" data-full="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/583339157_122262090068076327_8126758955767406528_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=111&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=833d8c&_nc_ohc=OaXmMGTMjaIQ7kNvwFQnncS&_nc_oc=AdlYNTNkd6lKldJmK0gx5eeUWi_0bB3H4viP0vqCFdnZnj1TcvvFq4vq8JnLh4pNXUDyvPeDQ-1oUGGFgFkoDvCS&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=IMgJaR_dTVYyc_8W6uV5PQ&oh=00_AfnVo3N2uNt5zY9wrU5j9D3C9_OKt8K7n5HQEvF_bIb1uA&oe=69439BE6" aria-label="Open League Image 2">
+          <img src="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/583339157_122262090068076327_8126758955767406528_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=111&cb2=99be929b-bd9a46d7&ccb=1-7&_nc_sid=833d8c&_nc_ohc=OaXmMGTMjaIQ7kNvwFQnncS&_nc_oc=AdlYNTNkd6lKldJmK0gx5eeUWi_0bB3H4viP0vqCFdnZnj1TcvvFq4vq8JnLh4pNXUDyvPeDQ-1oUGGFgFkoDvCS&_nc_zt=23&_nc_ht=scontent-sea5-1.xx&_nc_gid=IMgJaR_dTVYyc_8W6uV5PQ&oh=00_AfnVo3N2uNt5zY9wrU5j9D3C9_OKt8K7n5HQEvF_bIb1uA&oe=69439BE6" alt="League Image 2" loading="lazy" decoding="async">
+        </button>
+      </div>
+
+      <div class="pricing">
+        <div>
+          <h3 class="orange">Downtown Seattle YMCA</h3>
+          <p><strong>$400</strong> per team for a 5-week league</p>
+          <p>Each time slot is 1.5 hours per night, every team will play every week including finals.</p>
+          <p>Finals are bracketed into gold and silver to offer the most competitive games for the season finales.</p>
+        </div>
+        <div>
+          <h3 class="orange">Billings Middle School (North Seattle)</h3>
+          <p><strong>$500</strong> per team for a 7-week Reverse 4's league</p>
+          <p>Includes a 1 hour 20 minute time slot every night, every team plays weekly including finals.</p>
+          <p><strong>$570</strong> per team for a 7-week Coed 6's league</p>
+          <p>Includes a 1 hour 20 minute time slot every night, every team plays weekly including finals.</p>
+          <p>Finals are bracketed into Gold, Silver, and Bronze to offer the most competitive season finales.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section id="locations" class="card" style="margin-top:18px">
+      <div class="section-title"><h2>Locations</h2></div>
+      <div class="locations">
+        <div class="location-box">
+          <h3>Billings Middle School</h3>
+          <p>Address: 12351 8th Ave NE, Seattle, WA 98125</p>
+          <img src="https://images.squarespace-cdn.com/content/v1/51b4c245e4b0c02e88c68f66/a30eafa8-878e-4450-8851-6bbbc5516f0a/Billings+Logo.PNG?format=500w"
+               alt="Billings Middle School" class="billings">
+        </div>
+        <div class="location-box">
+          <h3>Downtown Seattle YMCA</h3>
+          <p>Address: 909 4th Ave, Seattle, WA 98104</p>
+          <img src="https://logos-world.net/wp-content/uploads/2021/11/YMCA-Logo-700x394.png"
+               alt="Downtown Seattle YMCA" style="width:100%; max-width:300px; height:auto;">
+        </div>
+      </div>
+    </section>
+
+    <!-- Ongoing Leagues Section -->
+    <section id="leagues" class="card glow-card" style="margin-top:18px">
+      <div class="section-title"><h2>Ongoing Leagues</h2></div>
+      <div class="league-columns">
+        <div class="league-text">
+          <h4>Billings Middle School</h4>
+          <ul>
+            <li>
+              <img src="molten-volleyball.png" class="league-img" alt="volleyball">
+                <a class="league-bullet-link" href="https://fb.me/1XtDgbElgKWnn9e" target="_blank" rel="noopener">Mondays: Individual Reverse 4's - 6:30 - 10:30<br>24 players (12 guys & 12 girls)<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</a>
+            </li>
+            <li>
+              <img src="molten-volleyball.png" class="league-img" alt="volleyball">
+                <a class="league-bullet-link" href="https://fb.me/e/70NPLsnhC" target="_blank" rel="noopener">Tuesdays: Reverse 4's - 6:30 - 10:30<br>6 teams<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</a>
+            </li>
+            <li>
+              <img src="molten-volleyball.png" class="league-img" alt="volleyball">
+                <a class="league-bullet-link" href="https://fb.me/2nsPaOyMf1kS19F" target="_blank" rel="noopener">Wednesdays: Reverse 4's - 7:30 - 10:30<br>6 teams<br>Time Slots: 7:30 - 8:40, 8:40 - 9:50, 9:50 - 11:00</a>
+            </li>
+            <li>
+              <img src="molten-volleyball.png" class="league-img" alt="volleyball">
+                <a class="league-bullet-link" href="https://www.facebook.com/share/14JkFe4XPXj/" target="_blank" rel="noopener">Thursdays: Reverse 4's - 6:30 - 10:30<br>6 teams<br>Time Slots: 6:30 - 7:50, 7:50 - 9:10, 9:10 - 10:30</a>
+            </li>
+          </ul>
+        </div>
+        <div class="league-text">
+          <h4>Downtown Seattle YMCA</h4>
+          <ul>
+            <li>
+              <img src="mikasa-volleyball.png" class="league-img" alt="volleyball">
+                <a class="league-bullet-link" href="https://www.facebook.com/share/1Css6GoQpd/" target="_blank" rel="noopener">Mondays: Reverse 4's - 6:00 - 9:00<br>4 teams<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</a>
+            </li>
+            <li>
+              <img src="mikasa-volleyball.png" class="league-img" alt="volleyball">
+                <a class="league-bullet-link" href="https://www.facebook.com/share/1WxnKMCtyj/" target="_blank" rel="noopener">Tuesdays: Reverse 4's - 6:00 - 9:00<br>4 teams<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</a>
+            </li>
+            <li>
+              <img src="mikasa-volleyball.png" class="league-img" alt="volleyball">
+                <a class="league-bullet-link" href="https://www.facebook.com/share/17QdCp1QLv/" target="_blank" rel="noopener">Thursday: KOB Reverse 4's - 6:00 - 9:00<br>8 pairs<br>Time Slots: 6:00 - 7:30, 7:30 - 9:00</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="card contact glow-card" style="margin-top:18px">
+      <div class="section-title"><h2>Contact Us</h2></div>
+      <p>Questions or ready to register your team? Email us at <a href="mailto:Upnorthvolleyballwa@gmail.com" style="color:var(--accent)">Upnorthvolleyballwa@gmail.com</a></p>
+      <p>Find us on Facebook: <a href="https://www.facebook.com/UpNorthVolleyball" target="_blank" style="color:var(--accent)">Up North Volleyball (Facebook)</a></p>
+      <h4 style="margin-top:12px">Quick Message</h4>
+      <form data-antispam="1" id="contactForm" action="https://formspree.io/f/xanrvqvg" method="POST">
+        <!-- Anti-spam: bots often fill hidden fields; humans won't -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="website">Website</label>
+          <input id="website" name="website" type="text" autocomplete="off" tabindex="-1" />
+        </div>
+        <input type="hidden" id="formStart" name="formStart" value="" />
+        <input type="hidden" id="formToken" name="formToken" value="" />
+
+        <input type="text" name="name" placeholder="Your name" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:inherit">
+        <input type="email" name="email" placeholder="Your email" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:inherit">
+        <textarea name="message" placeholder="Tell us about your team / question" rows="4" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:inherit"></textarea>
+<div class="form-status" id="formStatus" aria-live="polite"></div>
+
+<button class="btn" type="submit" id="contactSubmit">Send Message</button>
+      </form>
+      <p id="formStatus" style="margin-top:10px;display:none;"></p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      &copy; 2025 Up North Volleyball — Seattle, WA
+    </footer>
+  </main>
+
+  <!-- Lightbox modal -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close">×</button>
+    <img id="lightboxImg" alt="">
+  </div>
+
+  <script>
+    (function () {
+      // Hamburger menu
+      var header = document.querySelector('.site-header');
+      var menuBtn = document.getElementById('menuBtn');
+      var menuPanel = document.getElementById('menuPanel');
+      var menuBackdrop = document.getElementById('menuBackdrop');
+
+      function openMenu() {
+        header.classList.add('menu-open');
+        menuBtn.setAttribute('aria-expanded', 'true');
+      }
+      function closeMenu() {
+        header.classList.remove('menu-open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+      function toggleMenu() {
+        if (header.classList.contains('menu-open')) closeMenu();
+        else openMenu();
+      }
+
+      menuBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      menuBackdrop.addEventListener('click', function () {
+        closeMenu();
+      });
+
+      menuPanel.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          closeMenu();
+        });
+      });
+
+      // Lightbox
+      var lightbox = document.getElementById('lightbox');
+      var lightboxImg = document.getElementById('lightboxImg');
+      var lightboxClose = document.getElementById('lightboxClose');
+
+      function openLightbox(src, alt) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || 'Expanded image';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('no-scroll');
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('no-scroll');
+        // clear src so the browser frees memory on mobile
+        lightboxImg.src = '';
+      }
+
+      lightboxClose.addEventListener('click', closeLightbox);
+
+      // click outside the image closes
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      // Bind league thumbs
+      document.querySelectorAll('#league-info .league-thumb').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var src = btn.getAttribute('data-full') || (btn.querySelector('img') && btn.querySelector('img').src);
+          var alt = (btn.querySelector('img') && btn.querySelector('img').alt) || '';
+          if (src) openLightbox(src, alt);
+        });
+      });
+
+      // Quick Message: submit via AJAX so Formspree doesn't open a new page
+      var contactForm = document.getElementById('contactForm');
+      var formStatus = document.getElementById('formStatus');
+      var contactSubmit = document.getElementById('contactSubmit');
+
+      function setFormStatus(msg, isError) {
+        if (!formStatus) return;
+        formStatus.textContent = msg;
+        formStatus.style.display = 'block';
+        formStatus.style.color = isError ? 'rgba(255,120,120,0.95)' : 'rgba(255,255,255,0.9)';
+      }
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          if (contactSubmit) {
+            contactSubmit.disabled = true;
+            contactSubmit.textContent = 'Sending...';
+          }
+
+          var formData = new FormData(contactForm);
+
+          fetch(contactForm.action, {
+            method: contactForm.method || 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          })
+          .then(function (response) {
+            if (response.ok) {
+              setFormStatus('Thanks! Your message was sent.', false);
+              contactForm.reset();
+              return;
+            }
+            return response.json().then(function (data) {
+              var msg = 'Oops — something went wrong. Please try again.';
+              if (data && data.errors && data.errors.length) {
+                msg = data.errors.map(function (e) { return e.message; }).join(' ');
+              }
+              setFormStatus(msg, true);
+            });
+          })
+          .catch(function () {
+            setFormStatus('Network error — please check your connection and try again.', true);
+          })
+          .finally(function () {
+            if (contactSubmit) {
+              contactSubmit.disabled = false;
+              contactSubmit.textContent = 'Send Message';
+            }
+          });
+        });
+      }
+
+      // ESC closes whichever is open
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeMenu();
+          closeLightbox();
+        }
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const form = document.querySelector('#contact form[data-antispam="1"]');
+      if (!form) return;
+
+      // Simple session token (prevents some naive bot replays)
+      const tokenEl = form.querySelector('#formToken');
+      const startEl = form.querySelector('#formStart');
+      const hpEl = form.querySelector('#website');
+      const statusEl = form.querySelector('#formStatus');
+      const now = Date.now();
+      if (startEl) startEl.value = String(now);
+
+      const token = (crypto && crypto.getRandomValues)
+        ? Array.from(crypto.getRandomValues(new Uint8Array(12))).map(b => b.toString(16).padStart(2,'0')).join('')
+        : String(Math.random()).slice(2) + String(now);
+      if (tokenEl) tokenEl.value = token;
+      // Cooldown (limits repeated rapid submits)
+      const COOLDOWN_MS = 90 * 1000; // 90 seconds
+      const KEY = 'unv_contact_last_submit';
+
+      function setStatus(msg, kind) {
+        if (!statusEl) return;
+        statusEl.textContent = msg || '';
+        statusEl.classList.remove('error','ok');
+        if (kind) statusEl.classList.add(kind);
+      }
+
+      form.addEventListener('submit', function (e) {
+        setStatus('');
+
+        // Honeypot filled => likely bot
+        if (hpEl && hpEl.value && hpEl.value.trim().length > 0) {
+          e.preventDefault();
+          setStatus('Submission blocked.', 'error');
+          return;
+        }
+
+        // Too fast => likely bot
+        const start = startEl ? parseInt(startEl.value || '0', 10) : 0;
+        const elapsed = Date.now() - start;
+        if (start && elapsed < 3000) { // < 3 seconds
+          e.preventDefault();
+          setStatus('Please wait a moment and try again.', 'error');
+          return;
+        }
+
+        // Cooldown
+        try {
+          const last = parseInt(localStorage.getItem(KEY) || '0', 10);
+          if (last && (Date.now() - last) < COOLDOWN_MS) {
+            e.preventDefault();
+            const remain = Math.ceil((COOLDOWN_MS - (Date.now() - last)) / 1000);
+            setStatus(`Please wait ${remain}s before sending another message.`, 'error');
+            return;
+          }
+        } catch (_) {}
+        // Basic message length clamp (prevents some spam floods)
+        const msgEl = form.querySelector('textarea[name="message"], textarea#message, textarea');
+        if (msgEl && msgEl.value.length > 1200) {
+          e.preventDefault();
+          setStatus('Message is too long (max 1200 characters).', 'error');
+          msgEl.value = msgEl.value.slice(0, 1200);
+          msgEl.focus();
+          return;
+        }
+
+        // Mark submit time (after validation)
+        try { localStorage.setItem(KEY, String(Date.now())); } catch (_) {}
+
+        setStatus('Sending…', 'ok');
+      });
+    })();
+  </script>
+
+</body>
+</html>
