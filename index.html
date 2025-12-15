@@ -524,6 +524,30 @@
       animation: pulseGlow 3s infinite;
     }
 
+    /* Founder image matches League Information thumbnail sizing */
+    #about .founder-media{
+      display:flex;
+      justify-content:center;
+      margin: 12px 0 8px;
+    }
+    #about .founder-thumb{
+      display:block;
+      cursor:pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      width:100%;
+      max-width:260px;
+      height:auto;
+      border-radius:14px;
+      box-shadow: 0 0 16px rgba(255,106,0,0.18);
+      transform: translateZ(0);
+    }
+    #about .founder-thumb:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 0 28px rgba(255,106,0,0.45);
+    }
+
+
+
     /* League Information thumbnails (clear + responsive) */
     .league-tip{
       margin: 6px 0 12px;
@@ -886,8 +910,8 @@
         </a>
 </div>
 <p style="margin-top:8px"><strong>About the Founder:</strong> <a href="https://www.facebook.com/dane.erosa/" rel="noopener" style="color:var(--accent)" target="_blank">Dane Erosa</a> is a local Seattleite and volleyball player who founded Up North Volleyball to create competitive yet inclusive leagues for the community.</p>
-<div style="text-align:center;">
-<img alt="Up North Volleyball" src="https://scontent-sea1-1.xx.fbcdn.net/v/t39.30808-6/462767079_18342458059130627_83010730814849764_n.jpg?stp=dst-jpegr_tt6&amp;_nc_cat=106&amp;ccb=1-7&amp;_nc_sid=127cfc&amp;_nc_ohc=CumQZnbiLZkQ7kNvwH2Nei8&amp;_nc_oc=AdkWPN0apMaQDgW4owGcDaPfgEp1EBJx4xWTh7ffQwM981jWd7-7m7NaGHyyHuCmYccGSmxULhruprtuLTPMjJhA&amp;_nc_zt=23&amp;se=-1&amp;_nc_ht=scontent-sea1-1.xx&amp;_nc_gid=g1Rav_l6suZMeJemp1pzEg&amp;oh=00_Aflf3yCzgkSnMowXL8X-BhhLEl1AFXvR6ausXdmiSfFydQ&amp;oe=6943AE5B" style="width:40%; height:auto;"/>
+<div class="founder-media">
+  <img class="founder-thumb" alt="Up North Volleyball" src="https://scontent-sea1-1.xx.fbcdn.net/v/t39.30808-6/462767079_18342458059130627_83010730814849764_n.jpg?stp=dst-jpegr_tt6&amp;_nc_cat=106&amp;ccb=1-7&amp;_nc_sid=127cfc&amp;_nc_ohc=CumQZnbiLZkQ7kNvwH2Nei8&amp;_nc_oc=AdkWPN0apMaQDgW4owGcDaPfgEp1EBJx4xWTh7ffQwM981jWd7-7m7NaGHyyHuCmYccGSmxULhruprtuLTPMjJhA&amp;_nc_zt=23&amp;se=-1&amp;_nc_ht=scontent-sea1-1.xx&amp;_nc_gid=g1Rav_l6suZMeJemp1pzEg&amp;oh=00_Aflf3yCzgkSnMowXL8X-BhhLEl1AFXvR6ausXdmiSfFydQ&amp;oe=6943AE5B" />
 </div>
 <p style="margin-top:8px">Follow us on <a href="https://www.facebook.com/UpNorthVolleyball" style="color:var(--accent)" target="_blank">Facebook</a> for announcements, or connect with Dane on <em>LinkedIn</em> (link available on request).</p>
 </section>
@@ -1089,6 +1113,17 @@
           if (src) openLightbox(src, alt);
         });
       });
+
+      // Bind Founder image (tap/click to enlarge)
+      var founderImg = document.querySelector('#about .founder-thumb');
+      if (founderImg) {
+        founderImg.addEventListener('click', function () {
+          var src = founderImg.getAttribute('data-full') || founderImg.src;
+          var alt = founderImg.alt || '';
+          if (src) openLightbox(src, alt);
+        });
+      }
+
 
       // Quick Message: submit via AJAX so Formspree doesn't open a new page
       var contactForm = document.getElementById('contactForm');
