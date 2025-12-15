@@ -508,15 +508,6 @@
       height:100%;
       border:0;
     }
-    
-    .video-wrap video{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      border:0;
-      background:#000;
-    }
 .video-caption{
       margin:-8px 0 14px;
       text-align:center;
@@ -549,6 +540,99 @@
     .form-status.error{ color: rgba(255,160,160,0.95); }
     .form-status.ok{ color: rgba(170,255,200,0.95); }
 
+  
+    /* Fullscreen video button */
+    .open-video-btn{
+      display:inline-block;
+      padding: 10px 16px;
+      border-radius: 16px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      border: 1px solid rgba(255,255,255,0.20);
+      background: linear-gradient(180deg, rgba(235,235,235,0.28) 0%, rgba(120,120,120,0.22) 55%, rgba(40,40,40,0.28) 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.22),
+        0 10px 24px rgba(0,0,0,0.35);
+      position: relative;
+      will-change: box-shadow, transform;
+      animation: btnPulse 2.4s ease-in-out infinite;
+    }
+    .open-video-btn:hover{
+      transform: translateY(-1px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.28),
+        0 12px 26px rgba(0,0,0,0.40),
+        0 0 14px rgba(255,255,255,0.12);
+    }
+    .open-video-btn:active{
+      transform: translateY(0px) scale(0.99);
+    }
+    @keyframes btnPulse{
+      0%, 100%{
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,0.22),
+          0 10px 24px rgba(0,0,0,0.35),
+          0 0 0 rgba(255,255,255,0.00);
+      }
+      50%{
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,0.24),
+          0 10px 24px rgba(0,0,0,0.35),
+          0 0 10px rgba(255,255,255,0.16);
+      }
+    }
+
+  
+    /* Who Are We: Skill guide button */
+    .skill-guide-btn-wrap{
+      display:flex;
+      justify-content:center;
+      margin: 14px 0 4px;
+    }
+    .skill-guide-btn{
+      display:inline-block;
+      padding: 12px 18px;
+      border-radius: 18px;
+      color: var(--accent); /* match section title color */
+      text-decoration:none;
+      font-weight: 900;
+      letter-spacing: 0.2px;
+      text-transform:none;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: linear-gradient(180deg, rgba(245,245,245,0.22) 0%, rgba(120,120,120,0.18) 55%, rgba(20,20,20,0.28) 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.20),
+        0 10px 24px rgba(0,0,0,0.35),
+        0 0 10px rgba(255,106,0,0.18);
+      animation: skillBtnPulse 2.4s ease-in-out infinite;
+      max-width: 92%;
+      text-align:center;
+    }
+    .skill-guide-btn:hover{
+      transform: translateY(-1px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.24),
+        0 12px 26px rgba(0,0,0,0.40),
+        0 0 14px rgba(255,106,0,0.28);
+    }
+    .skill-guide-btn:active{ transform: translateY(0px) scale(0.99); }
+    @keyframes skillBtnPulse{
+      0%, 100%{
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,0.20),
+          0 10px 24px rgba(0,0,0,0.35),
+          0 0 6px rgba(255,106,0,0.14);
+      }
+      50%{
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,0.22),
+          0 10px 24px rgba(0,0,0,0.35),
+          0 0 12px rgba(255,106,0,0.26);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -572,7 +656,7 @@
 
   <section class="hero">
     <h1>Up North Volleyball</h1>
-    <p class="lead">Dominate on the Courts. Connect with your Community.</p>
+    <p class="lead">Dominate on the Courts. Connect with your community.</p>
     <div class="card glow-card">
       <strong>Question about leagues, pop-up events, level of play, locations, or prices?</strong>
       <div style="margin-top:8px"><a class="btn" href="#contact">Send a message</a></div>
@@ -582,16 +666,33 @@
   <main>
     <section id="about" class="card">
       <div class="section-title"><h2>Who Are We?</h2></div>
-      <div class="video-wrap" aria-label="Up North Volleyball intro video">
-        <video controls playsinline webkit-playsinline preload="metadata" title="Up North Volleyball Intro Video">
-        <source src="https://drive.google.com/uc?export=download&id=16wbdynUmmz-hAxVoHB_7Hu-FDmK4eIiZ" type="video/mp4" />
-        Your browser can’t play this video. <a href="https://drive.google.com/file/d/16wbdynUmmz-hAxVoHB_7Hu-FDmK4eIiZ/view?usp=sharing" target="_blank" rel="noopener" style="color:var(--accent)">Open it here</a>.
-      </video>
+      <div class="video-wrap" aria-label="<strong>Up North Volleyball</strong> intro video">
+        <iframe
+          src="https://drive.google.com/file/d/16wbdynUmmz-hAxVoHB_7Hu-FDmK4eIiZ/preview"
+          title="Up North Volleyball Intro Video"
+          allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+          allowfullscreen
+          webkitallowfullscreen
+          mozallowfullscreen
+          loading="lazy"></iframe>
       </div>
-      <div class="video-caption">If fullscreen isn’t available inside the page, <a href="https://drive.google.com/file/d/16wbdynUmmz-hAxVoHB_7Hu-FDmK4eIiZ/view?usp=sharing" target="_blank" rel="noopener" style="color:var(--accent)">open the video in a new tab</a>.</div>
-      <p>Up North Volleyball is a community-centered volleyball organization based in Seattle, Washington. Our mission is to offer engaging and competitive volleyball experiences while fostering meaningful connections. Recognizing that Seattle is a transient city, we are committed to creating an inclusive and welcoming environment where players can build community and friendships through the sport they love.</p>
-      <p>The league levels we primarily host are advertised as BB/BB+ as well as some BB- leagues that act as general pipelines to the more competitive leagues.</p>
-      <p style="margin-top:8px"><strong>About the Founder:</strong> <a href="https://www.facebook.com/dane.erosa/" target="_blank" rel="noopener" style="color:var(--accent)">Dane Erosa</a> is a local Seattleite and volleyball player who founded Up North Volleyball to create competitive yet inclusive leagues for the community.</p>
+<div style="text-align:center; margin-top:8px; margin-bottom:14px;">
+        <a class="open-video-btn" id="openVideoBtn" href="https://drive.google.com/file/d/16wbdynUmmz-hAxVoHB_7Hu-FDmK4eIiZ/view?usp=sharing" target="_blank" rel="noopener"
+          >
+          Open Video With Full Screen
+        </a>
+      </div>
+
+      <p><strong>Up North Volleyball</strong> is a community-centered volleyball organization based in <strong>Seattle, Washington</strong>. Our mission is to offer engaging and competitive volleyball experiences while fostering meaningful connections. Recognizing that Seattle is a transient city, we are committed to creating an inclusive and welcoming environment where players can build community and friendships through the sport they love.</p>
+      <p>The league levels we primarily host are advertised as <strong>BB/BB+</strong> as well as some <strong>BB-</strong> leagues that act as general pipelines to the more competitive leagues.</p>
+
+      <div class="skill-guide-btn-wrap">
+        <a class="skill-guide-btn" href="https://upnorthvball.github.io/Skill-Guide/" target="_blank" rel="noopener">
+          Up North Volleyball Comprehensive Skill Guide
+        </a>
+      </div>
+
+<p style="margin-top:8px"><strong>About the Founder:</strong> <a href="https://www.facebook.com/dane.erosa/" target="_blank" rel="noopener" style="color:var(--accent)">Dane Erosa</a> is a local Seattleite and volleyball player who founded Up North Volleyball to create competitive yet inclusive leagues for the community.</p>
 
       <div style="text-align:center;">
         <img
