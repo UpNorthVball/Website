@@ -10,7 +10,7 @@
 <meta content="Seattle volleyball leagues, open gyms, and events." property="og:description"/>
 <meta content="website" property="og:type"/>
 <meta content="https://upnorthvball.github.io/Website/" property="og:url"/>
-<meta content="https://upnorthvball.github.io/Website/upnorth.jpg" property="ogs:image"/>
+<meta content="https://upnorthvball.github.io/Website/upnorth.jpg" property="og:image"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
 <meta content="summary_large_image" name="twitter:card"/>
@@ -43,6 +43,24 @@
       transform: translateZ(0);
       will-change: transform;
     }
+    /* Mobile background fix (iOS/Android): avoid fixed pseudo-element rendering issues */
+    html, body { height: 100%; }
+    body { background-color: #0d0f12; }
+
+    /* iOS Safari: fixed positioned pseudo elements can fail to paint; use absolute instead */
+    @supports (-webkit-touch-callout: none) {
+      body::before { position: absolute; }
+    }
+
+    /* Small screens: ensure the background stays visible and performant */
+    @media (max-width: 768px) {
+      body::before {
+        position: absolute;
+        transform: none;
+        will-change: auto;
+      }
+    }
+
 
     .site-header{
       display:flex;
@@ -597,6 +615,35 @@
       transform: translateZ(0);
     }
 
+    
+    /* League Information: two location boxes + consistent thumbnail sizing */
+    #league-info .league-info-box{
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.14); /* subtle border */
+      border-radius: 14px;
+      padding: 16px 18px;
+      position: relative;
+      overflow: hidden;
+      animation: pulseGlowSoft 3.2s ease-in-out infinite;
+      box-shadow: 0 0 10px rgba(255,106,0,0.18);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    #league-info .league-info-box:hover{
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,0.22);
+      box-shadow: 0 10px 26px rgba(255,106,0,0.25);
+    }
+    #league-info .league-info-box h3{ margin-top:0; }
+
+    /* Make all 4 thumbnails the same size/scale */
+    #league-info .league-thumb{ aspect-ratio: 1 / 1; }
+    #league-info .league-thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+
     /* Fit YMCA logo fully (if you use it in League Info later) */
     #league-info img.ymca {
       object-fit: contain;
@@ -912,6 +959,10 @@
 </div>
 <p><strong>Up North Volleyball</strong> is a community-centered volleyball organization based in <strong>Seattle, Washington</strong>. Our mission is to offer engaging and competitive volleyball experiences while fostering meaningful connections. Recognizing that Seattle is a transient city, we are committed to creating an inclusive and welcoming environment where players can build community and friendships through the sport they love.</p>
 
+<p style="margin-top:8px">Follow us on <a href="https://www.facebook.com/UpNorthVolleyball" style="color:var(--accent)" target="_blank">Facebook</a> for announcements, or connect with Dane on <em>LinkedIn</em> (link available on request).</p>
+
+
+
 
 
 
@@ -922,37 +973,49 @@
 <a class="skill-guide-btn" href="https://upnorthvball.github.io/Skill-Guide/" rel="noopener" target="_blank">
           Up North Volleyball Comprehensive Rating Guide
         </a>
-</div></section><section class="card glow-card" id="about-founder" style="margin-top:18px"><div class="section-title"><h2>About the Founder</h2></div><p style="margin-top:8px"><a href="https://www.facebook.com/dane.erosa/" rel="noopener" style="color:var(--accent)" target="_blank">Dane Erosa</a> is a local Seattleite and volleyball player who founded Up North Volleyball to create competitive yet inclusive leagues for the community.</p><div class="founder-media">
+</div></section><section class="card glow-card" id="about-founder" style="margin-top:18px"><div class="section-title"><h2>About the Founder</h2></div><p style="margin-top:8px"><a href="https://www.facebook.com/dane.erosa/" rel="noopener" style="color:var(--accent)" target="_blank">Dane Erosa</a> created Up North Volleyball to answer two needs at once: a place where the game genuinely pushes your level while everyone still feels they belong, and a meaningful outlet beyond the daily grind—a consistent, high-quality hobby that brings joy, builds purpose, and turns shared effort into real connection on and off the court.</p><div class="founder-media">
 <img alt="Up North Volleyball" class="founder-thumb" src="https://scontent-sea1-1.xx.fbcdn.net/v/t39.30808-6/462767079_18342458059130627_83010730814849764_n.jpg?stp=dst-jpegr_tt6&amp;_nc_cat=106&amp;ccb=1-7&amp;_nc_sid=127cfc&amp;_nc_ohc=CumQZnbiLZkQ7kNvwH2Nei8&amp;_nc_oc=AdkWPN0apMaQDgW4owGcDaPfgEp1EBJx4xWTh7ffQwM981jWd7-7m7NaGHyyHuCmYccGSmxULhruprtuLTPMjJhA&amp;_nc_zt=23&amp;se=-1&amp;_nc_ht=scontent-sea1-1.xx&amp;_nc_gid=g1Rav_l6suZMeJemp1pzEg&amp;oh=00_Aflf3yCzgkSnMowXL8X-BhhLEl1AFXvR6ausXdmiSfFydQ&amp;oe=6943AE5B"/>
-</div><p style="margin-top:8px">Follow us on <a href="https://www.facebook.com/UpNorthVolleyball" style="color:var(--accent)" target="_blank">Facebook</a> for announcements, or connect with Dane on <em>LinkedIn</em> (link available on request).</p></section>
+</div></section>
 <section class="card" id="league-info" style="margin-top:18px">
 <div class="section-title"><h2>League Information</h2></div>
-<div aria-label="League images" class="league-media">
-<button aria-label="Open League Image 1" class="league-thumb" data-full="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/580565164_122261087888076327_3662231164972742991_n.jpg?stp=cp6_dst-jpg_tt6&amp;_nc_cat=110&amp;cb2=99be929b-bd9a46d7&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_ohc=I4UkyJnkPqUQ7kNvwEwU_cB&amp;_nc_oc=Adn28_R814zSxTKaETFhisEsxI8NJLLyQosKFo35cO_TwFGnfAYc0uOYdOAGpzYVs2_SgBdIxadNTkXxsNDTodFj&amp;_nc_zt=23&amp;_nc_ht=scontent-sea5-1.xx&amp;_nc_gid=FMv9xV9YsEEeIu7dfSXDEQ&amp;oh=00_AflpjFZeYj-y7WQWryKzO6VswJ2McLF7Vr8Izu7MOgLXxw&amp;oe=6943AC57" type="button">
-<img alt="League Image 1" decoding="async" loading="lazy" src="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/580565164_122261087888076327_3662231164972742991_n.jpg?stp=cp6_dst-jpg_tt6&amp;_nc_cat=110&amp;cb2=99be929b-bd9a46d7&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_ohc=I4UkyJnkPqUQ7kNvwEwU_cB&amp;_nc_oc=Adn28_R814zSxTKaETFhisEsxI8NJLLyQosKFo35cO_TwFGnfAYc0uOYdOAGpzYVs2_SgBdIxadNTkXxsNDTodFj&amp;_nc_zt=23&amp;_nc_ht=scontent-sea5-1.xx&amp;_nc_gid=FMv9xV9YsEEeIu7dfSXDEQ&amp;oh=00_AflpjFZeYj-y7WQWryKzO6VswJ2McLF7Vr8Izu7MOgLXxw&amp;oe=6943AC57"/>
+
+<div class="pricing">
+
+  <div class="league-info-box">
+    <h3 class="orange">Downtown Seattle YMCA</h3>
+    <div aria-label="Downtown Seattle YMCA photos" class="league-media">
+<button aria-label="Open Downtown Seattle YMCA photo 1" class="league-thumb" data-full="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/599086907_122265454460076327_103034949353534448_n.jpg?stp=cp6_dst-jpg_tt6&amp;_nc_cat=105&amp;cb2=99be929b-bd9a46d7&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_ohc=nNx8BEOPORAQ7kNvwGogkiH&amp;_nc_oc=AdnReS99CH-hLgjI7K-HCl8dep_x7oESUieOMDMVhCS_4qFw990Hrxl1KtonwDsSDAk&amp;_nc_zt=23&amp;_nc_ht=scontent-sea5-1.xx&amp;_nc_gid=sNZSo5NyNVu1LGVYypFq-A&amp;oh=00_AfkdgxqS6XPebPEhFdWltPxRLpc6zE5Xmu4SH0D9rPn_2A&amp;oe=69493B8F" type="button">
+<img alt="Downtown Seattle YMCA Photo 1" decoding="async" loading="lazy" src="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/599086907_122265454460076327_103034949353534448_n.jpg?stp=cp6_dst-jpg_tt6&amp;_nc_cat=105&amp;cb2=99be929b-bd9a46d7&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_ohc=nNx8BEOPORAQ7kNvwGogkiH&amp;_nc_oc=AdnReS99CH-hLgjI7K-HCl8dep_x7oESUieOMDMVhCS_4qFw990Hrxl1KtonwDsSDAk&amp;_nc_zt=23&amp;_nc_ht=scontent-sea5-1.xx&amp;_nc_gid=sNZSo5NyNVu1LGVYypFq-A&amp;oh=00_AfkdgxqS6XPebPEhFdWltPxRLpc6zE5Xmu4SH0D9rPn_2A&amp;oe=69493B8F"/>
 </button>
-<button aria-label="Open League Image 2" class="league-thumb" data-full="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/583339157_122262090068076327_8126758955767406528_n.jpg?stp=cp6_dst-jpg_tt6&amp;_nc_cat=111&amp;cb2=99be929b-bd9a46d7&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_ohc=OaXmMGTMjaIQ7kNvwFQnncS&amp;_nc_oc=AdlYNTNkd6lKldJmK0gx5eeUWi_0bB3H4viP0vqCFdnZnj1TcvvFq4vq8JnLh4pNXUDyvPeDQ-1oUGGFgFkoDvCS&amp;_nc_zt=23&amp;_nc_ht=scontent-sea5-1.xx&amp;_nc_gid=IMgJaR_dTVYyc_8W6uV5PQ&amp;oh=00_AfnVo3N2uNt5zY9wrU5j9D3C9_OKt8K7n5HQEvF_bIb1uA&amp;oe=69439BE6" type="button">
-<img alt="League Image 2" decoding="async" loading="lazy" src="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/583339157_122262090068076327_8126758955767406528_n.jpg?stp=cp6_dst-jpg_tt6&amp;_nc_cat=111&amp;cb2=99be929b-bd9a46d7&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_ohc=OaXmMGTMjaIQ7kNvwFQnncS&amp;_nc_oc=AdlYNTNkd6lKldJmK0gx5eeUWi_0bB3H4viP0vqCFdnZnj1TcvvFq4vq8JnLh4pNXUDyvPeDQ-1oUGGFgFkoDvCS&amp;_nc_zt=23&amp;_nc_ht=scontent-sea5-1.xx&amp;_nc_gid=IMgJaR_dTVYyc_8W6uV5PQ&amp;oh=00_AfnVo3N2uNt5zY9wrU5j9D3C9_OKt8K7n5HQEvF_bIb1uA&amp;oe=69439BE6"/>
+<button aria-label="Open Downtown Seattle YMCA photo 2" class="league-thumb" data-full="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/597387886_122265454442076327_4133658482375173440_n.jpg?_nc_cat=107&amp;cb2=99be929b-bd9a46d7&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_ohc=_zbfMsv2TWAQ7kNvwGYOFIR&amp;_nc_oc=AdnuTGA2V2FY1VqPpQsnDFMxOuD1LqsKzoZgSHWef9oiPO90_4WFYT7UEuEyT2IPmII&amp;_nc_zt=23&amp;_nc_ht=scontent-sea5-1.xx&amp;_nc_gid=yOey1yYUz6my8IYhqSOOiw&amp;oh=00_Afkd3fs9WhmG5N4g9Na3ueb_cMdOQryTIBr8Degs_gI9Sw&amp;oe=6949689E" type="button">
+<img alt="Downtown Seattle YMCA Photo 2" decoding="async" loading="lazy" src="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/597387886_122265454442076327_4133658482375173440_n.jpg?_nc_cat=107&amp;cb2=99be929b-bd9a46d7&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_ohc=_zbfMsv2TWAQ7kNvwGYOFIR&amp;_nc_oc=AdnuTGA2V2FY1VqPpQsnDFMxOuD1LqsKzoZgSHWef9oiPO90_4WFYT7UEuEyT2IPmII&amp;_nc_zt=23&amp;_nc_ht=scontent-sea5-1.xx&amp;_nc_gid=yOey1yYUz6my8IYhqSOOiw&amp;oh=00_Afkd3fs9WhmG5N4g9Na3ueb_cMdOQryTIBr8Degs_gI9Sw&amp;oe=6949689E"/>
 </button>
 </div>
-<div class="pricing">
-<div>
-<h3 class="orange">Downtown Seattle YMCA</h3>
-<p><strong>$400</strong> per team for a 5-week league</p>
+    <p><strong>$400</strong> per team for a 5-week league</p>
 <p>Each time slot is <strong>1.5 hours</strong> per night, every team will play every week including finals.</p>
 <p>Each team plays <strong>4 Sets</strong> a night to <strong>21</strong> with a cap at <strong>23</strong></p>
 <p>Finals are bracketed into <strong>Gold</strong> and <strong>Silver</strong> to offer the most competitive games for the season finales.</p>
+  </div>
+
+  <div class="league-info-box">
+    <h3 class="orange">Billings Middle School (North Seattle)</h3>
+    <div aria-label="Billings Middle School photos" class="league-media">
+<button aria-label="Open Billings photo 1" class="league-thumb" data-full="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/580565164_122261087888076327_3662231164972742991_n.jpg?stp=cp6_dst-jpg_tt6&amp;_nc_cat=110&amp;cb2=99be929b-bd9a46d7&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_ohc=I4UkyJnkPqUQ7kNvwEwU_cB&amp;_nc_oc=Adn28_R814zSxTKaETFhisEsxI8NJLLyQosKFo35cO_TwFGnfAYc0uOYdOAGpzYVs2_SgBdIxadNTkXxsNDTodFj&amp;_nc_zt=23&amp;_nc_ht=scontent-sea5-1.xx&amp;_nc_gid=FMv9xV9YsEEeIu7dfSXDEQ&amp;oh=00_AflpjFZeYj-y7WQWryKzO6VswJ2McLF7Vr8Izu7MOgLXxw&amp;oe=6943AC57" type="button">
+<img alt="Billings Photo 1" decoding="async" loading="lazy" src="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/580565164_122261087888076327_3662231164972742991_n.jpg?stp=cp6_dst-jpg_tt6&amp;_nc_cat=110&amp;cb2=99be929b-bd9a46d7&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_ohc=I4UkyJnkPqUQ7kNvwEwU_cB&amp;_nc_oc=Adn28_R814zSxTKaETFhisEsxI8NJLLyQosKFo35cO_TwFGnfAYc0uOYdOAGpzYVs2_SgBdIxadNTkXxsNDTodFj&amp;_nc_zt=23&amp;_nc_ht=scontent-sea5-1.xx&amp;_nc_gid=FMv9xV9YsEEeIu7dfSXDEQ&amp;oh=00_AflpjFZeYj-y7WQWryKzO6VswJ2McLF7Vr8Izu7MOgLXxw&amp;oe=6943AC57"/>
+</button>
+<button aria-label="Open Billings photo 2" class="league-thumb" data-full="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/583339157_122262090068076327_8126758955767406528_n.jpg?stp=cp6_dst-jpg_tt6&amp;_nc_cat=111&amp;cb2=99be929b-bd9a46d7&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_ohc=OaXmMGTMjaIQ7kNvwFQnncS&amp;_nc_oc=AdlYNTNkd6lKldJmK0gx5eeUWi_0bB3H4viP0vqCFdnZnj1TcvvFq4vq8JnLh4pNXUDyvPeDQ-1oUGGFgFkoDvCS&amp;_nc_zt=23&amp;_nc_ht=scontent-sea5-1.xx&amp;_nc_gid=IMgJaR_dTVYyc_8W6uV5PQ&amp;oh=00_AfnVo3N2uNt5zY9wrU5j9D3C9_OKt8K7n5HQEvF_bIb1uA&amp;oe=69439BE6" type="button">
+<img alt="Billings Photo 2" decoding="async" loading="lazy" src="https://scontent-sea5-1.xx.fbcdn.net/v/t39.30808-6/583339157_122262090068076327_8126758955767406528_n.jpg?stp=cp6_dst-jpg_tt6&amp;_nc_cat=111&amp;cb2=99be929b-bd9a46d7&amp;ccb=1-7&amp;_nc_sid=833d8c&amp;_nc_ohc=OaXmMGTMjaIQ7kNvwFQnncS&amp;_nc_oc=AdlYNTNkd6lKldJmK0gx5eeUWi_0bB3H4viP0vqCFdnZnj1TcvvFq4vq8JnLh4pNXUDyvPeDQ-1oUGGFgFkoDvCS&amp;_nc_zt=23&amp;_nc_ht=scontent-sea5-1.xx&amp;_nc_gid=IMgJaR_dTVYyc_8W6uV5PQ&amp;oh=00_AfnVo3N2uNt5zY9wrU5j9D3C9_OKt8K7n5HQEvF_bIb1uA&amp;oe=69439BE6"/>
+</button>
 </div>
-<div>
-<h3 class="orange">Billings Middle School (North Seattle)</h3>
-<p><strong>$500</strong> per team for a 7-week Reverse 4's league</p>
+    <p><strong>$500</strong> per team for a 7-week Reverse 4's league</p>
 <p>Includes a <strong>1 hour 20 minute</strong> time slot every night, every team plays weekly including finals.</p>
 <p>Each team plays <strong>4 Sets</strong> a night to <strong>21</strong> with a cap at <strong>23</strong></p>
 <p><strong>$570</strong> per team for a 7-week Coed 6's league</p>
 <p>Includes a <strong>1 hour 20 minute</strong> time slot every night, every team plays weekly including finals.</p>
 <p>Each team plays <strong>4 Sets</strong> a night to <strong>21</strong> with a cap at <strong>23</strong></p>
 <p>Finals are bracketed into <strong>Gold</strong>, <strong>Silver</strong>, and <strong>Bronze</strong> to offer the most competitive season finales.</p>
-</div>
+  </div>
+
 </div>
 </section>
 <!-- Payments Section -->
