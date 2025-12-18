@@ -36,47 +36,22 @@
       isolation:isolate;
     }
 
-    /* Background layer for better mobile scaling (avoids background-attachment issues) */
-    body::before{
-      content:"";
+    /* Sticky background layer (stays visible while scrolling on desktop + mobile) */
+    .bg-layer{
       position:fixed;
       inset:0;
       background-image:
         linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),
         url('https://github.com/UpNorthVball/Website/blob/main/upnorth.jpg?raw=true');
-      background-position: center, center;
-      background-size: cover, cover;
-      background-repeat: no-repeat, no-repeat;
+      background-position:center, center;
+      background-size:cover, cover;
+      background-repeat:no-repeat, no-repeat;
       background-color:#0b0f14;
       z-index:-1;
       pointer-events:none;
     }
 
-/* Mobile background fix (iOS/Android): avoid fixed pseudo-element rendering issues */
-    html, body { height: 100%; }
-    body { background-color: #0d0f12; }
-
-    /* iOS Safari: fixed positioned pseudo elements can fail to paint; use absolute instead */
-    @supports (-webkit-touch-callout: none) {
-      body::before { position: absolute; }
-    }
-
-    /* Small screens: avoid fixed pseudo-element paint issues; use absolute instead */
-    @media (max-width: 768px) {
-      body::before{
-        position: absolute;
-        inset: 0;
-        background-position: center top, center top;
-      }
-    }
-
-    /* Touch devices (incl. Android Chrome): fixed layers can flicker; keep background stable */
-    @media (hover: none) and (pointer: coarse) {
-      body::before{ position: absolute; }
-    }
-
-
-    .site-header{
+.site-header{
       display:flex;
       align-items:center;
       justify-content:flex-end;
@@ -939,6 +914,7 @@
 </style>
 <meta content="https://upnorthvball.github.io/Website/upnorth.jpg" property="og:image:secure_url"/></head>
 <body id="top">
+  <div class="bg-layer" aria-hidden="true"></div>
 <header class="site-header">
 <button aria-controls="menuPanel" aria-expanded="false" aria-label="Open menu" class="menu-btn" id="menuBtn" type="button">
 <span aria-hidden="true" class="hamburger"></span>
